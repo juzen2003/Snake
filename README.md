@@ -26,9 +26,11 @@ Possible extra features & improvement if time is allowed:
 
 ## Wireframes
 ### Welcome
-[[/images/snake.png|Welcome Page]]
+![Welcome Page](https://github.com/juzen2003/Snake/blob/master/proposal_wireframes/snake.png)
+
 ### Game
-[[/images/snake_game.png|Game Page]]
+![Game Page](https://github.com/juzen2003/Snake/blob/master/proposal_wireframes/snake_game.png)
+
 
 ## Timeline
 ### Weekend
