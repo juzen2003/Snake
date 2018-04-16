@@ -1,7 +1,7 @@
 class Food {
   constructor() {
     this.unitSize = 20;
-
+    this.food;
   }
 
   drawFood(ctx, x, y) {
@@ -12,6 +12,13 @@ class Food {
     ctx.fillStyle = "#3D9728";
     ctx.fill();
     ctx.closePath();
+  }
+
+  drawRandomFood(canvasWidth, canvasHeight) {
+    const randomX = Math.floor( Math.random() * (canvasWidth / this.unitSize));
+    const randomY = Math.floor( Math.random() * (canvasHeight / this.unitSize));
+    // debugger
+    return {x: randomX, y: randomY};
   }
 }
 
