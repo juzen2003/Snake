@@ -23,7 +23,7 @@ let dy = 0;
 
 let snake = new Snake();
 let food = new Food();
-food.drawRandomFood(ctx, gameViewWidth, gameViewHeight);
+food.drawRandomFood(gameViewWidth, gameViewHeight);
 
 // check wall collision
 function wallCollisionCheck(x, y) {
@@ -47,8 +47,9 @@ function bodyCollisionCheck(x, y) {
 
 function draw() {
   // clear the screen;
-  // ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+  ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
   // food.drawFood(ctx, 24, 0);
+  food.drawFood(ctx);
   snake.drawSnake(ctx);
   // testing clockwise movement
   // debugger;
