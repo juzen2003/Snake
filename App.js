@@ -23,7 +23,7 @@ let dy = 0;
 
 let snake = new Snake();
 let food = new Food();
-food.drawRandomFood(gameViewWidth, gameViewHeight);
+food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
 
 // check wall collision
 function wallCollisionCheck(x, y) {
@@ -122,4 +122,4 @@ function keyUpHandler(e) {
   }
 }
 
-setInterval(draw, 100);
+setInterval(draw, 120);
