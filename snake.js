@@ -73,13 +73,13 @@ function snakeMovement(direction) {
   // update the head to get the new head
   switch (direction) {
     case "up":
-      headx--;
+      heady--;
       break;
     case "down":
-      headx++;
+      heady++;
       break;
     case "left":
-      heady--;
+      headx--;
       break;
     case "right":
       headx++;
@@ -103,7 +103,18 @@ function draw() {
   // drawAUnitSquare();
 
   drawSnake();
-  snakeMovement("right");
+  debugger;
+  if(headx === gameViewWidth / unitSize - 1) {
+    snakeMovement("down");
+  } else if (heady === gameViewHeight / unitSize - 1) {
+    snakeMovement("left");
+  } else if (headx === -1) {
+    snakeMovement("up");
+  } else if (heady === -1) {
+    snakeMovement("right");
+  } else {
+    snakeMovement("right");
+  }
   drawSnake();
   // if (bodyCollisionCheck() || wallCollisionCheck()) {
   //   alert("GAME OVER");
