@@ -1,4 +1,5 @@
 import Snake from './snake';
+import Food from './food.js';
 
 var snakeCanvas = document.getElementById("game-canvas");
 var ctx = snakeCanvas.getContext("2d");
@@ -21,6 +22,7 @@ let dx = 1;
 let dy = 0;
 
 let snake = new Snake();
+let food = new Food();
 
 // check wall collision
 function wallCollisionCheck(x, y) {
@@ -45,7 +47,7 @@ function bodyCollisionCheck(x, y) {
 function draw() {
   // clear the screen;
   ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
-
+  food.drawFood(ctx, 24, 0);
   snake.drawSnake(ctx);
   // testing clockwise movement
   // debugger;
@@ -73,19 +75,19 @@ function draw() {
   // requestAnimationFrame(draw);
   if(rightPressed) {
     if (direction !== "left") {
-      direction = "right" ;
+      direction = "right";
     }
   } else if (leftPressed) {
     if (direction !== "right") {
-      direction = "left" ;
+      direction = "left";
     }
   } else if (upPressed) {
     if (direction !== "down") {
-      direction = "up" ;
+      direction = "up";
     }
   } else if (downPressed) {
     if (direction !== "up") {
-      direction = "down" ;
+      direction = "down";
     }
   }
   snake.snakeMovement(direction);
