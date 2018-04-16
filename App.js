@@ -27,7 +27,8 @@ food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
 
 // check wall collision
 function wallCollisionCheck(x, y) {
-  if(x === -1 || y === -1 || x === gameViewWidth / snake.unitSize || y === gameViewHeight / snake.unitSize) {
+  // debugger;
+  if(x === -1 || y === -1 || (x === gameViewWidth / snake.unitSize) || (y === gameViewHeight / snake.unitSize)) {
     return true;
   } else {
     return false;
@@ -36,7 +37,7 @@ function wallCollisionCheck(x, y) {
 
 // check body collision
 function bodyCollisionCheck(x, y) {
-  for (let i = 0; i < snake.snakeArr.length; i++) {
+  for (let i = 1; i < snake.snakeArr.length; i++) {
     if(snake.snakeArr[i].x === x && snake.snakeArr[i].y === y) {
       return true;
     }
@@ -49,6 +50,14 @@ function draw() {
   // clear the screen;
   ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
   // food.drawFood(ctx, 24, 0);
+
+  // collision check
+  if (bodyCollisionCheck(snake.headX, snake.headY) || wallCollisionCheck(snake.headX, snake.headY)) {
+    // debugger;
+    alert("GAME OVER");
+    document.location.reload();
+  }
+
   food.drawFood(ctx);
   snake.drawSnake(ctx);
   // testing clockwise movement
@@ -93,6 +102,8 @@ function draw() {
     }
   }
   snake.snakeMovement(direction);
+
+
 }
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -122,4 +133,4 @@ function keyUpHandler(e) {
   }
 }
 
-setInterval(draw, 120);
+setInterval(draw, 130);
