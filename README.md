@@ -34,7 +34,7 @@ Possible extra features & improvement if time is allowed:
 
 ## Timeline
 ### Weekend
-* Completed MDN tutorial to get basic understanding of building game with Javascript.
+- [] Completed MDN tutorial to get basic understanding of building game with Javascript.
 * Draw out different version of game layout, and pick proper layout of the game.
 
 ### Day 1
