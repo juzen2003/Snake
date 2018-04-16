@@ -38,7 +38,7 @@ Possible extra features & improvement if time is allowed:
 * Draw out different version of game layout, and pick proper layout of the game.
 
 ### Day 1
-  * Setup all files necessary for the game, including webpack, package.json, etc.
+  * Setup all files necessary for the game, including index.html, webpack, package.json, etc.
   * Complete layout of the game, including drawing objects (snake, food, etc).
 
 ### Day 2
