@@ -6,6 +6,10 @@ const gameViewWidth = snakeCanvas.width;
 const unitSize = 20; // the unit square size of snake
 // snake array, an array of squares, keep track of snake size
 let snakeArr = [];
+// keep track of head of snack
+let headx;
+let heady;
+
 let score = 0;
 // testing init position
 // let x = 0;
@@ -17,10 +21,12 @@ let dy = 0;
 function initSnake() {
   let length = 5;
   for(let i = 0; i < length; i++) {
-    // put head to be the last of the array
+    // snake head at index 0
     snakeArr.unshift({x: i, y: 0});
   }
   // debugger;
+  headx = snakeArr[0].x;
+  heady = snakeArr[0].y;
 
 }
 
@@ -63,21 +69,49 @@ function bodyCollisionCheck(x, y) {
 }
 
 // test the movement
-function snakeMovement() {
+function snakeMovement(direction) {
+  // update the head to get the new head
+  switch (direction) {
+    case "up":
+      headx--;
+      break;
+    case "down":
+      headx++;
+      break;
+    case "left":
+      heady--;
+      break;
+    case "right":
+      headx++;
+      break;
+    default:
+       headx = headx;
+       heady = heady;
+      break;
+  }
 
+  // unshift new head to snakeArr
+  snakeArr.pop();
+  snakeArr.unshift({x: headx, y: heady});
 }
 
 function draw() {
   // clear the screen;
   ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
 
-  initSnake();
   // drawAUnitSquare(1,0);
   // drawAUnitSquare();
 
   drawSnake();
+  snakeMovement("right");
+  drawSnake();
+  // if (bodyCollisionCheck() || wallCollisionCheck()) {
+  //   alert("GAME OVER");
+  //   document.location.reload();
+  // }
   // x += dx;
   // y += dy;
 }
 
+initSnake();
 setInterval(draw, 100);
