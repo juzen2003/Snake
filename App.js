@@ -103,18 +103,22 @@ function draw() {
   // drawAUnitSquare();
 
   drawSnake();
-  debugger;
-  if(headx === gameViewWidth / unitSize - 1) {
-    snakeMovement("down");
+  // testing clockwise movement
+  // debugger;
+  if (headx === 0 && heady === 0) {
+    snakeMovement("right");
+  } else if (headx === 0) {
+    snakeMovement("up");
   } else if (heady === gameViewHeight / unitSize - 1) {
     snakeMovement("left");
-  } else if (headx === -1) {
-    snakeMovement("up");
-  } else if (heady === -1) {
+  } else if(headx === gameViewWidth / unitSize - 1) {
+      snakeMovement("down");
+  } else if (heady === 0) {
     snakeMovement("right");
   } else {
     snakeMovement("right");
   }
+
   drawSnake();
   // if (bodyCollisionCheck() || wallCollisionCheck()) {
   //   alert("GAME OVER");
