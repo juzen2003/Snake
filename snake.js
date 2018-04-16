@@ -13,9 +13,9 @@ class Snake {
       // snake head at index 0
       this.snakeArr.unshift({x: i, y: 0});
     }
+    this.headX = this.snakeArr[0].x;
+    this.headY = this.snakeArr[0].y;
     // debugger;
-    this.headx = this.snakeArr[0].x;
-    this.heady = this.snakeArr[0].y;
   }
 
   drawAUnitSquare(ctx, x, y) {
@@ -29,6 +29,7 @@ class Snake {
     ctx.closePath();
   }
 
+  // draw snake body (build up by unit square)
   drawSnake(ctx) {
     for(let i = 0; i < this.snakeArr.length; i++) {
       this.drawAUnitSquare(ctx, this.snakeArr[i].x, this.snakeArr[i].y);
@@ -50,15 +51,19 @@ class Snake {
       case "right":
         this.headX++;
         break;
-      default:
-         this.headX = this.headX;
-         this.headY = this.headY;
-        break;
+      // default:
+      //   this.headX = this.headX;
+      //   this.headY = this.headY;
+      //   break;
     }
 
     // unshift new head to snakeArr
-    this.snakeArr.pop();
+    // const tail = this.snakeArr.pop();
+    // tail.x = this.headX;
+    // tail.y = this.headY;
     this.snakeArr.unshift({x: this.headX, y: this.headY});
+    this.snakeArr.pop();
+    // debugger
   }
 }
 export default Snake;
