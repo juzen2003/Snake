@@ -4,7 +4,7 @@ var ctx = snakeCanvas.getContext("2d");
 const gameViewHeight = snakeCanvas.height;
 const gameViewWidth = snakeCanvas.width;
 const unitSize = 20; // the unit square size of snake
-// snake array, an array of squares
+// snake array, an array of squares, keep track of snake size
 let snakeArr = [];
 let score = 0;
 // testing init position
@@ -40,6 +40,31 @@ function drawSnake() {
   for(let i = 0; i < snakeArr.length; i++) {
     drawAUnitSquare(snakeArr[i].x, snakeArr[i].y);
   }
+}
+
+// check wall collision
+function wallCollisionCheck(x, y) {
+  if(x === -1 || y === -1 || x === gameViewWidth / unitSize || y === gameViewHeight / unitSize) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// check body collision
+function bodyCollisionCheck(x, y) {
+  for (let i = 0; i < snakeArr.length; i++) {
+    if(snakeArr[i].x === x && snakeArr[i].y === y) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+// test the movement
+function snakeMovement() {
+
 }
 
 function draw() {

@@ -38,7 +38,7 @@ Possible extra features & improvement if time is allowed:
 - [x] Draw out different version of game layout, and pick proper layout of the game.
 
 ### Day 1
-- [ ] Setup all files necessary for the game, including index.html, webpack, package.json, etc.
+- [x] Setup all files necessary for the game, including index.html, webpack, package.json, etc.
 - [ ] Complete layout of the game, including drawing objects (snake, food, etc).
 
 ### Day 2
@@ -48,8 +48,8 @@ Possible extra features & improvement if time is allowed:
 ### Day 3
 - [ ] Implement the speed bar
 - [ ] Test to confirm the game logic is thorough.
-- [ ] Pick and research one of extra features if schedule is ahead.
+- [ ] Pick and research some of extra features if schedule is ahead.
 
 ### Day 4
 - [ ] Create welcome modal page.
-- [ ] Implement one of extra features if timeline is ahead.
+- [ ] Implement some of extra features if timeline is ahead.
