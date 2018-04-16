@@ -56,14 +56,23 @@ class Snake {
       //   this.headY = this.headY;
       //   break;
     }
+  }
 
+  // does snake eat?
+  eat(food) {
+    // new head after updating headX & headY
+    if(this.headX === food.foodPos.x && this.headY === food.foodPos.y) {
+      let newHead = {x: this.headX, y: this.headY};
+      this.snakeArr.unshift(newHead);
+      return true;
+    } else {
     // unshift new head to snakeArr
-    // const tail = this.snakeArr.pop();
-    // tail.x = this.headX;
-    // tail.y = this.headY;
-    this.snakeArr.unshift({x: this.headX, y: this.headY});
-    this.snakeArr.pop();
+      this.snakeArr.pop();
+      this.snakeArr.unshift({x: this.headX, y: this.headY});
+      return false;
+    }
     // debugger
   }
+
 }
 export default Snake;

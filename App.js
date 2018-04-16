@@ -102,6 +102,9 @@ function draw() {
     }
   }
   snake.snakeMovement(direction);
+  if (snake.eat(food)) {
+    food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
+  }
 
 
 }
