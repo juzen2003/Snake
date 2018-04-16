@@ -34,22 +34,22 @@ Possible extra features & improvement if time is allowed:
 
 ## Timeline
 ### Weekend
-- [] Completed MDN tutorial to get basic understanding of building game with Javascript.
-* Draw out different version of game layout, and pick proper layout of the game.
+- [x] Completed MDN tutorial to get basic understanding of building game with Javascript.
+- [ ] Draw out different version of game layout, and pick proper layout of the game.
 
 ### Day 1
-  * Setup all files necessary for the game, including index.html, webpack, package.json, etc.
-  * Complete layout of the game, including drawing objects (snake, food, etc).
+- [ ] Setup all files necessary for the game, including index.html, webpack, package.json, etc.
+- [ ] Complete layout of the game, including drawing objects (snake, food, etc).
 
 ### Day 2
-  * Complete game logic, make sure wall and body collision are implemented correctly.
-  * Implement user control to the game.
+- [ ] Complete game logic, make sure wall and body collision are implemented correctly.
+- [ ] Implement user control to the game.
 
 ### Day 3
-  * Implement the speed bar
-  * Test to confirm the game logic is thorough.
-  * Pick and research one of extra features if schedule is ahead.
+- [ ] Implement the speed bar
+- [ ] Test to confirm the game logic is thorough.
+- [ ] Pick and research one of extra features if schedule is ahead.
 
 ### Day 4
-  * Create welcome modal page.
-  * Implement one of extra features if timeline is ahead.
+- [ ] Create welcome modal page.
+- [ ] Implement one of extra features if timeline is ahead.
