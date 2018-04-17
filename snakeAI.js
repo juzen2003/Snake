@@ -58,24 +58,96 @@ class Snake {
     }
   }
 
+  // check body collision
+  avoidBodyCollision() {
+
+    for (let i = 1; i < this.snakeArr.length; i++) {
+      // body at right
+      if(this.snakeArr[i].x === this.headX + 1 && this.snakeArr[i].y === this.headY) {
+        // coming from left
+        // debugger
+        if(this.headX === this.snakeArr[1].x + 1) {
+          for (let j = 1; j < this.snakeArr.length; j++) {
+            if(this.snakeArr[j].y === this.headY - 1 && this.snakeArr[j].x === this.headX) {
+              this.snakeMovement("down");
+            } else {
+              this.snakeMovement("up");
+            }
+          }
+        }
+      } // body at left
+      else if(this.snakeArr[i].x === this.headX + 1 && this.snakeArr[i].y === this.headY) {
+        // coming from right
+        // debugger
+        if(this.headX === this.snakeArr[1].x - 1) {
+          for (let j = 1; j < this.snakeArr.length; j++) {
+            if(this.snakeArr[j].y === this.headY - 1 && this.snakeArr[j].x === this.headX) {
+              this.snakeMovement("down");
+            } else {
+              this.snakeMovement("up");
+            }
+          }
+        }
+      } // body at top
+      else if(this.snakeArr[i].x === this.headX && this.snakeArr[i].y === this.headY - 1) {
+        // coming from bottom
+        // debugger
+        if(this.headY === this.snakeArr[1].y - 1) {
+          for (let j = 1; j < this.snakeArr.length; j++) {
+            if(this.snakeArr[j].x === this.headX - 1 && this.snakeArr[j].y === this.headY) {
+              this.snakeMovement("right");
+            } else {
+              this.snakeMovement("left");
+            }
+          }
+        }
+      } // body at bottom
+      else if(this.snakeArr[i].x === this.headX && this.snakeArr[i].y === this.headY + 1) {
+        // coming from top
+        // debugger
+        if(this.headY === this.snakeArr[1].y + 1) {
+          for (let j = 1; j < this.snakeArr.length; j++) {
+            if(this.snakeArr[j].x === this.headX - 1 && this.snakeArr[j].y === this.headY) {
+              this.snakeMovement("right");
+            } else {
+              this.snakeMovement("left");
+            }
+          }
+        }
+      }
+    }
+  }
+
   // move for AI
   move(food) {
     if(food.foodPos.x > this.headX) {
-      this.snakeMovement("right");
+      // this.avoidBodyCollision();
+      if(this.headX !== this.snakeArr[1].x - 1) {
+        this.snakeMovement("right");
+      }
     } else if(food.foodPos.x < this.headX) {
-      this.snakeMovement("left");
+      // this.avoidBodyCollision();
+      if(this.headX !== this.snakeArr[1].x + 1) {
+        this.snakeMovement("left");
+      }
     } else {
       if(food.foodPos.y > this.headY) {
-        this.snakeMovement("down");
+        // this.avoidBodyCollision();
+        if(this.headY !== this.snakeArr[1].y - 1) {
+          this.snakeMovement("down");
+        }
       } else if(food.foodPos.y < this.headY) {
-        this.snakeMovement("up");
+        // this.avoidBodyCollision();
+        if(this.headY !== this.snakeArr[1].y + 1) {
+          this.snakeMovement("up");
+        }
       }
     }
   }
 
   // does snake eat?
   eat(food) {
-    // this.move(food);
+    this.move(food);
     // new head after updating headX & headY
     if(this.headX === food.foodPos.x && this.headY === food.foodPos.y) {
       let newHead = {x: this.headX, y: this.headY};

@@ -67,7 +67,7 @@ export function gameForAI() {
   drawScore();
   // Need to implement here
   // snake.snakeMovement(direction);
-  snake.move(food);
+  // snake.move(food);
   if (snake.eat(food)) {
     score++;
     food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
