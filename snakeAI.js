@@ -60,11 +60,22 @@ class Snake {
 
   // move for AI
   move(food) {
-
+    if(food.foodPos.x > this.headX) {
+      this.snakeMovement("right");
+    } else if(food.foodPos.x < this.headX) {
+      this.snakeMovement("left");
+    } else {
+      if(food.foodPos.y > this.headY) {
+        this.snakeMovement("down");
+      } else if(food.foodPos.y < this.headY) {
+        this.snakeMovement("up");
+      }
+    }
   }
-  
+
   // does snake eat?
   eat(food) {
+    // this.move(food);
     // new head after updating headX & headY
     if(this.headX === food.foodPos.x && this.headY === food.foodPos.y) {
       let newHead = {x: this.headX, y: this.headY};

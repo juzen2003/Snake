@@ -1,4 +1,4 @@
-import Snake from './snake';
+import Snake from './snakeAI';
 import Food from './food.js';
 
 var snakeCanvas = document.getElementById("ai-game-canvas");
@@ -66,7 +66,8 @@ export function gameForAI() {
   snake.drawSnake(ctx);
   drawScore();
   // Need to implement here
-  snake.snakeMovement(direction);
+  // snake.snakeMovement(direction);
+  snake.move(food);
   if (snake.eat(food)) {
     score++;
     food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
