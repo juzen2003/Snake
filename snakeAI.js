@@ -4,7 +4,9 @@ class Snake {
     this.unitSize = 20;
     this.headX = 0;
     this.headY = 0;
+    this.pos = [];
     this.initSnake();
+    this.dir;
   }
 
   initSnake() {
@@ -12,6 +14,8 @@ class Snake {
     for(let i = 0; i < length; i++) {
       // snake head at index 0
       this.snakeArr.unshift({x: i, y: 0});
+      // init pos
+      this.pos.unshift([i, 0]);
     }
     this.headX = this.snakeArr[0].x;
     this.headY = this.snakeArr[0].y;
@@ -36,20 +40,21 @@ class Snake {
     }
   }
 
-  snakeMovement(direction) {
+  snakeMovement(direction, step=1) {
     // update the head to get the new head
+    this.dir = direction;
     switch (direction) {
       case "up":
-        this.headY--;
+        this.headY -= step;
         break;
       case "down":
-        this.headY++;
+        this.headY += step;
         break;
       case "left":
-        this.headX--;
+        this.headX -= step;
         break;
       case "right":
-        this.headX++;
+        this.headX += step;
         break;
       // default:
       //   this.headX = this.headX;
@@ -60,61 +65,8 @@ class Snake {
 
   // check body collision
   avoidBodyCollision() {
-
     for (let i = 1; i < this.snakeArr.length; i++) {
-      // body at right
-      if(this.snakeArr[i].x === this.headX + 1 && this.snakeArr[i].y === this.headY) {
-        // coming from left
-        // debugger
-        if(this.headX === this.snakeArr[1].x + 1) {
-          for (let j = 1; j < this.snakeArr.length; j++) {
-            if(this.snakeArr[j].y === this.headY - 1 && this.snakeArr[j].x === this.headX) {
-              this.snakeMovement("down");
-            } else {
-              this.snakeMovement("up");
-            }
-          }
-        }
-      } // body at left
-      else if(this.snakeArr[i].x === this.headX + 1 && this.snakeArr[i].y === this.headY) {
-        // coming from right
-        // debugger
-        if(this.headX === this.snakeArr[1].x - 1) {
-          for (let j = 1; j < this.snakeArr.length; j++) {
-            if(this.snakeArr[j].y === this.headY - 1 && this.snakeArr[j].x === this.headX) {
-              this.snakeMovement("down");
-            } else {
-              this.snakeMovement("up");
-            }
-          }
-        }
-      } // body at top
-      else if(this.snakeArr[i].x === this.headX && this.snakeArr[i].y === this.headY - 1) {
-        // coming from bottom
-        // debugger
-        if(this.headY === this.snakeArr[1].y - 1) {
-          for (let j = 1; j < this.snakeArr.length; j++) {
-            if(this.snakeArr[j].x === this.headX - 1 && this.snakeArr[j].y === this.headY) {
-              this.snakeMovement("right");
-            } else {
-              this.snakeMovement("left");
-            }
-          }
-        }
-      } // body at bottom
-      else if(this.snakeArr[i].x === this.headX && this.snakeArr[i].y === this.headY + 1) {
-        // coming from top
-        // debugger
-        if(this.headY === this.snakeArr[1].y + 1) {
-          for (let j = 1; j < this.snakeArr.length; j++) {
-            if(this.snakeArr[j].x === this.headX - 1 && this.snakeArr[j].y === this.headY) {
-              this.snakeMovement("right");
-            } else {
-              this.snakeMovement("left");
-            }
-          }
-        }
-      }
+
     }
   }
 
@@ -122,24 +74,32 @@ class Snake {
   move(food) {
     if(food.foodPos.x > this.headX) {
       // this.avoidBodyCollision();
-      if(this.headX !== this.snakeArr[1].x - 1) {
+      if(this.dir !== "left") {
         this.snakeMovement("right");
+      } else {
+        this.snakeMovement("down");
       }
     } else if(food.foodPos.x < this.headX) {
       // this.avoidBodyCollision();
-      if(this.headX !== this.snakeArr[1].x + 1) {
+      if(this.dir !== "right") {
         this.snakeMovement("left");
+      } else {
+        this.snakeMovement("down");
       }
     } else {
       if(food.foodPos.y > this.headY) {
         // this.avoidBodyCollision();
-        if(this.headY !== this.snakeArr[1].y - 1) {
+        if(this.dir !== "up") {
           this.snakeMovement("down");
+        } else {
+          this.snakeMovement("right");
         }
       } else if(food.foodPos.y < this.headY) {
         // this.avoidBodyCollision();
-        if(this.headY !== this.snakeArr[1].y + 1) {
+        if(this.dir !== "down") {
           this.snakeMovement("up");
+        } else {
+          this.snakeMovement("right");
         }
       }
     }
@@ -152,11 +112,14 @@ class Snake {
     if(this.headX === food.foodPos.x && this.headY === food.foodPos.y) {
       let newHead = {x: this.headX, y: this.headY};
       this.snakeArr.unshift(newHead);
+      this.pos.unshift([this.headX, this.headY]);
       return true;
     } else {
     // unshift new head to snakeArr
       this.snakeArr.pop();
+      this.pos.pop();
       this.snakeArr.unshift({x: this.headX, y: this.headY});
+      this.pos.unshift([this.headX, this.headY]);
       return false;
     }
     // debugger
