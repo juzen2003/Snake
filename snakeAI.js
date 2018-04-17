@@ -58,6 +58,11 @@ class Snake {
     }
   }
 
+  // move for AI
+  move(food) {
+
+  }
+  
   // does snake eat?
   eat(food) {
     // new head after updating headX & headY
