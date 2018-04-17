@@ -1,3 +1,8 @@
 import {gameForPlayer} from './playerGame';
+import {gameForAI} from './AIGame';
 
-setInterval(gameForPlayer, 130);
+function game() {
+  // gameForPlayer();
+  gameForAI();
+}
+setInterval(game, 130);

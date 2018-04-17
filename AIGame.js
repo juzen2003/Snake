@@ -1,7 +1,7 @@
 import Snake from './snake';
 import Food from './food.js';
 
-var snakeCanvas = document.getElementById("human-game-canvas");
+var snakeCanvas = document.getElementById("ai-game-canvas");
 var ctx = snakeCanvas.getContext("2d");
 
 const gameViewHeight = snakeCanvas.height;
@@ -48,7 +48,7 @@ function drawScore() {
   ctx.closePath();
 }
 
-export function gameForPlayer() {
+export function gameForAI() {
   // clear the screen;
   ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
   // food.drawFood(ctx, 24, 0);

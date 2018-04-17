@@ -1,4 +1,11 @@
-#game-canvas {
-  border: 1px solid black;
+body {
+    display: flex;
+}
 
+#human-game-canvas {
+  border: 1px solid black;
+}
+
+#ai-game-canvas {
+  border: 1px solid black;
 }
