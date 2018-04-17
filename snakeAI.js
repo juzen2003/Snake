@@ -67,7 +67,7 @@ class Snake {
   bodyAtRight(food) {
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body right
-      if(this.snakeArr[i].x < food.foodPos.x && this.snakeArr[i].x > this.headX) {
+      if(this.snakeArr[i].x <= food.foodPos.x && this.snakeArr[i].x > this.headX) {
         if(this.snakeArr[i].y === this.headY) {
           // debugger
           return true;
@@ -81,7 +81,7 @@ class Snake {
   bodyAtLeft(food) {
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body left
-      if(this.snakeArr[i].x > food.foodPos.x && this.snakeArr[i].x < this.headX) {
+      if(this.snakeArr[i].x >= food.foodPos.x && this.snakeArr[i].x < this.headX) {
         if(this.snakeArr[i].y === this.headY) {
           return true;
         }
@@ -94,7 +94,7 @@ class Snake {
   bodyAtTop(food) {
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body top
-      if(this.snakeArr[i].y > food.foodPos.y && this.snakeArr[i].y < this.headY) {
+      if(this.snakeArr[i].y >= food.foodPos.y && this.snakeArr[i].y < this.headY) {
         if(this.snakeArr[i].x === this.headx) {
           return true;
         }
@@ -107,7 +107,7 @@ class Snake {
   bodyAtBottom(food) {
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body bottom
-      if(this.snakeArr[i].y < food.foodPos.y && this.snakeArr[i].y > this.headY) {
+      if(this.snakeArr[i].y <= food.foodPos.y && this.snakeArr[i].y > this.headY) {
         if(this.snakeArr[i].x === this.headx) {
           return true;
         }
@@ -273,7 +273,7 @@ class Snake {
 
   // does snake eat?
   eat(food) {
-    this.move(food);
+    // this.move(food);
     // new head after updating headX & headY
     if(this.headX === food.foodPos.x && this.headY === food.foodPos.y) {
       let newHead = {x: this.headX, y: this.headY};

@@ -5,4 +5,11 @@ function game() {
   // gameForPlayer();
   gameForAI();
 }
-setInterval(game, 130);
+
+const startButton = document.getElementById("start-button");
+startButton.addEventListener("click", startGame);
+
+function startGame() {
+  // debugger
+  setInterval(game, 100);
+}

@@ -57,9 +57,9 @@ export function gameForAI() {
   if (bodyCollisionCheck(snake.headX, snake.headY) || wallCollisionCheck(snake.headX, snake.headY)) {
     // debugger;
     // comment this back later
-    alert("GAME OVER");
-
-    document.location.reload();
+    // alert("GAME OVER");
+    //
+    // document.location.reload();
   }
 
   food.drawFood(ctx);
@@ -68,7 +68,7 @@ export function gameForAI() {
   drawScore();
   // Need to implement here
   // snake.snakeMovement(direction);
-  // snake.move(food);
+  snake.move(food);
   if (snake.eat(food)) {
     score++;
     // let randomWidthX = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
