@@ -14,12 +14,6 @@ let rightPressed = false;
 let leftPressed = false;
 let upPressed = false;
 let downPressed = false;
-// testing init position
-// let x = 0;
-// let y = 0;
-// unit move
-let dx = 1;
-let dy = 0;
 
 let snake = new Snake();
 let food = new Food();
@@ -46,7 +40,15 @@ function bodyCollisionCheck(x, y) {
   return false;
 }
 
-function draw() {
+function drawScore() {
+  ctx.beginPath();
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Score: " + score, 8, 20);
+  ctx.closePath();
+}
+
+function gameForPlayer() {
   // clear the screen;
   ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
   // food.drawFood(ctx, 24, 0);
@@ -59,31 +61,11 @@ function draw() {
   }
 
   food.drawFood(ctx);
+  // food.drawfoodPic(ctx);
   snake.drawSnake(ctx);
-  // testing clockwise movement
-  // debugger;
-  // if (snake.headX === 0 && snake.headY === 0) {
-  //   snake.snakeMovement("right");
-  // } else if (snake.headX === 0) {
-  //   snake.snakeMovement("up");
-  // } else if (snake.headY === gameViewHeight / snake.unitSize - 1) {
-  //   snake.snakeMovement("left");
-  // } else if(snake.headX === gameViewWidth / snake.unitSize - 1) {
-  //     snake.snakeMovement("down");
-  // } else if (snake.headY === 0) {
-  //   snake.snakeMovement("right");
-  // } else {
-  //   snake.snakeMovement("right");
-  // }
-  //
-  // snake.drawSnake(ctx);
-  // if (bodyCollisionCheck() || wallCollisionCheck()) {
-  //   alert("GAME OVER");
-  //   document.location.reload();
-  // }
-  // x += dx;
-  // y += dy;
-  // requestAnimationFrame(draw);
+  drawScore();
+
+
   if(rightPressed) {
     if (direction !== "left") {
       direction = "right";
@@ -103,6 +85,7 @@ function draw() {
   }
   snake.snakeMovement(direction);
   if (snake.eat(food)) {
+    score++;
     food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
   }
 
@@ -136,4 +119,4 @@ function keyUpHandler(e) {
   }
 }
 
-setInterval(draw, 130);
+setInterval(gameForPlayer, 130);

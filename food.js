@@ -14,6 +14,18 @@ class Food {
     ctx.closePath();
   }
 
+  drawfoodPic(ctx) {
+    const img = new Image();
+    img.src = 'p1.jpg';
+    // img = ctx.drawImage(img, 0, 0, this.unitSize, this.unitSize);
+    const that = this;
+    img.onload = function() {
+    var pattern = ctx.createPattern(img, '');
+    ctx.fillStyle = pattern;
+    ctx.fillRect(that.foodPos.x * that.unitSize, that.foodPos.y * that.unitSize, that.unitSize, that.unitSize);
+    };
+  }
+
   drawRandomFood(canvasWidth, canvasHeight, snake) {
     let randomX = Math.floor( Math.random() * (canvasWidth / this.unitSize));
     let randomY = Math.floor( Math.random() * (canvasHeight / this.unitSize));
