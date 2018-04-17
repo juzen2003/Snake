@@ -57,8 +57,9 @@ export function gameForAI() {
   if (bodyCollisionCheck(snake.headX, snake.headY) || wallCollisionCheck(snake.headX, snake.headY)) {
     // debugger;
     // comment this back later
-    // alert("GAME OVER");
-    // document.location.reload();
+    alert("GAME OVER");
+
+    document.location.reload();
   }
 
   food.drawFood(ctx);
@@ -70,7 +71,9 @@ export function gameForAI() {
   // snake.move(food);
   if (snake.eat(food)) {
     score++;
-    food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
+    // let randomWidthX = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
+    // let randomHeightY = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
+    food.drawRandomFood(gameViewWidth, gameViewWidth, snake);
   }
 
 }
