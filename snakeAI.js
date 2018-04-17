@@ -6,7 +6,7 @@ class Snake {
     this.headY = 0;
     this.pos = [];
     this.initSnake();
-    this.dir;
+    this.dir = "down";
   }
 
   initSnake() {
@@ -63,29 +63,137 @@ class Snake {
     }
   }
 
-  // check body collision
-  avoidBodyCollision() {
+  // check if body at right
+  bodyAtRight(food) {
     for (let i = 1; i < this.snakeArr.length; i++) {
-
+      // check body right
+      if(this.snakeArr[i].x < food.foodPos.x && this.snakeArr[i].x > this.headX) {
+        if(this.snakeArr[i].y === this.headY) {
+          // debugger
+          return true;
+        }
+      }
     }
+    return false;
+  }
+
+  // check if body at left
+  bodyAtLeft(food) {
+    for (let i = 1; i < this.snakeArr.length; i++) {
+      // check body left
+      if(this.snakeArr[i].x > food.foodPos.x && this.snakeArr[i].x < this.headX) {
+        if(this.snakeArr[i].y === this.headY) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  // check if body at top
+  bodyAtTop(food) {
+    for (let i = 1; i < this.snakeArr.length; i++) {
+      // check body top
+      if(this.snakeArr[i].y > food.foodPos.y && this.snakeArr[i].y < this.headY) {
+        if(this.snakeArr[i].x === this.headx) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  // check if body at bottom
+  bodyAtBottom(food) {
+    for (let i = 1; i < this.snakeArr.length; i++) {
+      // check body bottom
+      if(this.snakeArr[i].y < food.foodPos.y && this.snakeArr[i].y > this.headY) {
+        if(this.snakeArr[i].x === this.headx) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   // move for AI
   move(food) {
-    if(food.foodPos.x > this.headX) {
-      // this.avoidBodyCollision();
-      if(this.dir !== "left") {
-        this.snakeMovement("right");
-      } else {
-        this.snakeMovement("down");
+    if(food.foodPos.x > this.headX) { // food at right
+      // debugger
+      // moving right
+      if(this.dir === "right") {
+        if(!this.bodyAtRight(food)) {
+          this.snakeMovement("right");
+        } else if (!this.bodyAtTop(food)) {
+          this.snakeMovement("up");
+        } else if (!this.bodyAtBottom(food)) {
+          this.snakeMovement("down");
+        }
+      } else if(this.dir === "left") { // moving left
+        if (!this.bodyAtTop(food)) {
+          this.snakeMovement("up");
+        } else if (!this.bodyAtBottom(food)) {
+          this.snakeMovement("down");
+        } else if (!this.bodyAtLeft(food)) {
+          this.snakeMovement("left");
+        }
+      } else if (this.dir === "up") { // moving up
+        if (!this.bodyAtRight(food)) {
+          this.snakeMovement("right");
+        } else if (!this.bodyAtTop(food)) {
+          this.snakeMovement("up");
+        } else if (!this.bodyAtLeft(food)) {
+          this.snakeMovement("left");
+        }
+      } else if (this.dir === "down") { // moving down
+        if (!this.bodyAtRight(food)) {
+          this.snakeMovement("right");
+        } else if (!this.bodyAtBottom(food)) {
+          this.snakeMovement("down");
+        } else if (!this.bodyAtLeft(food)) {
+          this.snakeMovement("left");
+        }
       }
-    } else if(food.foodPos.x < this.headX) {
-      // this.avoidBodyCollision();
-      if(this.dir !== "right") {
-        this.snakeMovement("left");
-      } else {
-        this.snakeMovement("down");
+      // } else {
+      //   this.snakeMovement("down");
+      // }
+    } else if(food.foodPos.x < this.headX) { // food at left
+      // debugger
+      // moving left
+      if(this.dir === "left") {
+        if(!this.bodyAtLeft(food)) {
+          this.snakeMovement("left");
+        } else if (!this.bodyAtTop(food)) {
+          this.snakeMovement("up");
+        } else if (!this.bodyAtBottom(food)) {
+          this.snakeMovement("down");
+        }
+      } else if(this.dir === "right") { // moving right
+        if (!this.bodyAtTop(food)) {
+          this.snakeMovement("up");
+        } else if (!this.bodyAtBottom(food)) {
+          this.snakeMovement("down");
+        } else if (!this.bodyAtRight(food)) {
+          this.snakeMovement("right");
+        }
+      } else if (this.dir === "up") { // moving up
+        if (!this.bodyAtLeft(food)) {
+          this.snakeMovement("left");
+        } else if (!this.bodyAtTop(food)) {
+          this.snakeMovement("up");
+        } else if (!this.bodyAtRight(food)) {
+          this.snakeMovement("right");
+        }
+      } else if (this.dir === "down") { // moving down
+        if (!this.bodyAtLeft(food)) {
+          this.snakeMovement("left");
+        } else if (!this.bodyAtBottom(food)) {
+          this.snakeMovement("down");
+        } else if (!this.bodyAtLeft(food)) {
+          this.snakeMovement("left");
+        }
       }
+
     } else {
       if(food.foodPos.y > this.headY) {
         // this.avoidBodyCollision();
