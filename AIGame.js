@@ -1,81 +1,89 @@
 import Snake from './snakeAI';
-import Food from './food.js';
+import Food from './food';
 
-var snakeCanvas = document.getElementById("ai-game-canvas");
-var ctx = snakeCanvas.getContext("2d");
+class AIGame {
+  constructor() {
+  this.snakeCanvas = document.getElementById("ai-game-canvas");
+  this.ctx = this.snakeCanvas.getContext("2d");
 
-const gameViewHeight = snakeCanvas.height;
-const gameViewWidth = snakeCanvas.width;
+  this.gameViewHeight = this.snakeCanvas.height;
+  this.gameViewWidth = this.snakeCanvas.width;
 
-let score = 0;
-let speed = 100;
-// init direction
-let direction = "down";
-let rightPressed = false;
-let leftPressed = false;
-let upPressed = false;
-let downPressed = false;
-
-let snake = new Snake();
-let food = new Food();
-food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
-
-// check wall collision
-function wallCollisionCheck(x, y) {
-  // debugger;
-  if(x === -1 || y === -1 || (x === gameViewWidth / snake.unitSize) || (y === gameViewHeight / snake.unitSize)) {
-    return true;
-  } else {
-    return false;
+  this.score = 0;
+  this.speed = 100;
+  this.init();
   }
-}
+  // init direction
+  init() {
+    this.direction = "down";
+    this.rightPressed = false;
+    this.leftPressed = false;
+    this.upPressed = false;
+    this.downPressed = false;
 
-// check body collision
-function bodyCollisionCheck(x, y) {
-  for (let i = 1; i < snake.snakeArr.length; i++) {
-    if(snake.snakeArr[i].x === x && snake.snakeArr[i].y === y) {
+    this.snake = new Snake();
+    this.food = new Food();
+    this.food.drawRandomFood(this.gameViewWidth, this.gameViewHeight, this.snake);
+  }
+  // check wall collision
+  wallCollisionCheck(x, y) {
+    // debugger;
+    if(x === -1 || y === -1 || (x === this.gameViewWidth / this.snake.unitSize) || (y === this.gameViewHeight / this.snake.unitSize)) {
       return true;
+    } else {
+      return false;
     }
   }
 
-  return false;
-}
+  // check body collision
+  bodyCollisionCheck(x, y) {
+    for (let i = 1; i < this.snake.snakeArr.length; i++) {
+      if(this.snake.snakeArr[i].x === x && this.snake.snakeArr[i].y === y) {
+        return true;
+      }
+    }
 
-function drawScore() {
-  ctx.beginPath();
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
-  ctx.fillText("Score: " + score, 8, 20);
-  ctx.closePath();
-}
-
-export function gameForAI() {
-  // clear the screen;
-  ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
-  // food.drawFood(ctx, 24, 0);
-
-  // collision check
-  if (bodyCollisionCheck(snake.headX, snake.headY) || wallCollisionCheck(snake.headX, snake.headY)) {
-    // debugger;
-    // comment this back later
-    // alert("GAME OVER");
-    //
-    // document.location.reload();
+    return false;
   }
 
-  food.drawFood(ctx);
-  // food.drawfoodPic(ctx);
-  snake.drawSnake(ctx);
-  drawScore();
-  // Need to implement here
-  // snake.snakeMovement(direction);
-  snake.move(food);
-  if (snake.eat(food)) {
-    score++;
-    speed++;
-    // let randomWidthX = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
-    // let randomHeightY = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
-    food.drawRandomFood(gameViewWidth, gameViewWidth, snake);
+  drawScore() {
+    this.ctx.beginPath();
+    this.ctx.font = "16px Arial";
+    this.ctx.fillStyle = "#0095DD";
+    this.ctx.fillText("Score: " + this.score, 8, 20);
+    this.ctx.closePath();
   }
 
+  gameForAI() {
+    // clear the screen;
+    this.ctx.clearRect(0, 0, this.snakeCanvas.width, this.snakeCanvas.height);
+    // food.drawFood(ctx, 24, 0);
+
+    // collision check
+    if (this.bodyCollisionCheck(this.snake.headX, this.snake.headY) || this.wallCollisionCheck(this.snake.headX, this.snake.headY)) {
+      // debugger;
+      // comment this back later
+      // alert("GAME OVER");
+      //
+      // document.location.reload();
+    }
+
+    this.food.drawFood(this.ctx);
+    // food.drawfoodPic(ctx);
+    this.snake.drawSnake(this.ctx);
+    this.drawScore();
+    // Need to implement here
+    // snake.snakeMovement(direction);
+    this.snake.move(this.food);
+    if (this.snake.eat(this.food)) {
+      this.score++;
+      // this.speed++;
+      // let randomWidthX = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
+      // let randomHeightY = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
+      this.food.drawRandomFood(this.gameViewWidth, this.gameViewWidth, this.snake);
+    }
+
+  }
 }
+
+export default AIGame;

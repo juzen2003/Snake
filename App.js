@@ -1,11 +1,11 @@
 import PlayerGame from './playerGame';
-import {gameForAI} from './AIGame';
+import AIGame from './aiGame';
 
-let humanGame = new PlayerGame();
+let human = new PlayerGame();
+let ai = new AIGame();
 function game() {
-
-  humanGame.gameForPlayer();
-  gameForAI();
+  human.gameForPlayer();
+  ai.gameForAI();
 }
 const speed = 100;
 const startButton = document.getElementById("start-button");

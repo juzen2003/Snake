@@ -13,19 +13,20 @@ class PlayerGame {
     this.score = 0;
     // document.addEventListener("keydown", this.keyDownHandler, false);
     // document.addEventListener("keyup", this.keyUpHandler, false);
-    this.direction = "down";
-    this.rightPressed = false;
-    this.leftPressed = false;
-    this.upPressed = false;
-    this.downPressed = false;
+    // this.direction = "down";
+    // this.rightPressed = false;
+    // this.leftPressed = false;
+    // this.upPressed = false;
+    // this.downPressed = false;
+    //
+    // this.snake = new Snake();
+    // this.food = new Food();
+    // this.food.drawRandomFood(this.gameViewWidth, this.gameViewHeight, this.snake);
 
-    this.snake = new Snake();
-    this.food = new Food();
-    this.food.drawRandomFood(this.gameViewWidth, this.gameViewHeight, this.snake);
-
-
+    // need to bind eventhandler
     this.keyUpHandler = this.keyUpHandler.bind(this);
     this.keyDownHandler = this.keyDownHandler.bind(this);
+    this.init();
   }
 
   // init direction
@@ -71,11 +72,10 @@ class PlayerGame {
   }
 
   gameForPlayer() {
-    // clear the screen;
     document.addEventListener("keydown", this.keyDownHandler, false);
     document.addEventListener("keyup", this.keyUpHandler, false);
+    // clear the screen;
     this.ctx.clearRect(0, 0, this.snakeCanvas.width, this.snakeCanvas.height);
-    // food.drawFood(ctx, 24, 0);
 
     // collision check
     if (this.bodyCollisionCheck(this.snake.headX, this.snake.headY) || this.wallCollisionCheck(this.snake.headX, this.snake.headY)) {
