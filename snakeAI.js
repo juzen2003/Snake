@@ -63,12 +63,28 @@ class Snake {
     }
   }
 
+  wallRight() {
+    return this.headX === 24;
+  }
+  wallLeft() {
+    return this.headX === 0;
+  }
+  wallTop() {
+    return this.headY === 0;
+  }
+  wallBottom() {
+    return this.headY === 24;
+  }
+
+
+
   // check if body at right
   bodyAtRight(food) {
     // debugger
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body right
       if(this.snakeArr[i].x <= food.foodPos.x && this.snakeArr[i].x >= this.headX) {
+      // if(this.snakeArr[i].x <= food.foodPos.x && this.snakeArr[i].x === this.headX+1) {
       // if(this.snakeArr[i].x >= this.headX) {
         if(this.snakeArr[i].y === this.headY) {
           // debugger
@@ -85,6 +101,7 @@ class Snake {
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body left
       if(this.snakeArr[i].x >= food.foodPos.x && this.snakeArr[i].x <= this.headX) {
+      // if(this.snakeArr[i].x >= food.foodPos.x && this.snakeArr[i].x === this.headX-1) {
       // if(this.snakeArr[i].x <= this.headX) {
         if(this.snakeArr[i].y === this.headY) {
           return true;
@@ -100,6 +117,7 @@ class Snake {
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body top
       if(this.snakeArr[i].y >= food.foodPos.y && this.snakeArr[i].y <= this.headY) {
+      // if(this.snakeArr[i].y >= food.foodPos.y && this.snakeArr[i].y === this.headY-1) {
       // if(this.snakeArr[i].y <= this.headY) {
         if(this.snakeArr[i].x === this.headX) {
           return true;
@@ -115,6 +133,7 @@ class Snake {
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body bottom
       if(this.snakeArr[i].y <= food.foodPos.y && this.snakeArr[i].y >= this.headY) {
+      // if(this.snakeArr[i].y <= food.foodPos.y && this.snakeArr[i].y === this.headY+1) {
       // if(this.snakeArr[i].y >= this.headY) {
         if(this.snakeArr[i].x === this.headX) {
           return true;
@@ -130,35 +149,35 @@ class Snake {
       // debugger
       // moving right
       if(this.dir === "right") {
-        if(!this.bodyAtRight(food)) {
+        if(!this.bodyAtRight(food) && !this.wallRight()) {
           this.snakeMovement("right");
-        } else if (!this.bodyAtTop(food)) {
-          this.snakeMovement("up");
-        } else if (!this.bodyAtBottom(food)) {
+        } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
           this.snakeMovement("down");
+        } else if (!this.bodyAtTop(food) && !this.wallTop()) {
+          this.snakeMovement("up");
         }
       } else if(this.dir === "left") { // moving left
-        if (!this.bodyAtTop(food)) {
+        if (!this.bodyAtTop(food) && !this.wallTop()) {
           this.snakeMovement("up");
-        } else if (!this.bodyAtLeft(food)) {
+        } else if (!this.bodyAtLeft(food) && !this.wallLeft()) {
           this.snakeMovement("left");
-        } else if (!this.bodyAtBottom(food)) {
+        } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
           this.snakeMovement("down");
         }
       } else if (this.dir === "up") { // moving up
-        if (!this.bodyAtRight(food)) {
+        if (!this.bodyAtRight(food) && !this.wallRight()) {
           this.snakeMovement("right");
-        } else if (!this.bodyAtTop(food)) {
+        } else if (!this.bodyAtTop(food) && !this.wallTop()) {
           this.snakeMovement("up");
-        } else if (!this.bodyAtLeft(food)) {
+        } else if (!this.bodyAtLeft(food) && !this.wallLeft()) {
           this.snakeMovement("left");
         }
       } else if (this.dir === "down") { // moving down
-        if (!this.bodyAtRight(food)) {
+        if (!this.bodyAtRight(food) && !this.wallRight()) {
           this.snakeMovement("right");
-        } else if (!this.bodyAtBottom(food)) {
+        } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
           this.snakeMovement("down");
-        } else if (!this.bodyAtLeft(food)) {
+        } else if (!this.bodyAtLeft(food) && !this.wallLeft()) {
           this.snakeMovement("left");
         }
       }
@@ -169,35 +188,35 @@ class Snake {
       // debugger
       // moving left
       if(this.dir === "left") {
-        if(!this.bodyAtLeft(food)) {
+        if(!this.bodyAtLeft(food) && !this.wallLeft()) {
           this.snakeMovement("left");
-        } else if (!this.bodyAtTop(food)) {
-          this.snakeMovement("up");
-        } else if (!this.bodyAtBottom(food)) {
+        } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
           this.snakeMovement("down");
+        } else if (!this.bodyAtTop(food) && !this.wallTop()) {
+          this.snakeMovement("up");
         }
       } else if(this.dir === "right") { // moving right
-        if (!this.bodyAtTop(food)) {
+        if (!this.bodyAtTop(food) && !this.wallTop()) {
           this.snakeMovement("up");
-        } else if (!this.bodyAtRight(food)) {
+        } else if (!this.bodyAtRight(food) && !this.wallRight()) {
           this.snakeMovement("right");
-        } else if (!this.bodyAtBottom(food)) {
+        } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
           this.snakeMovement("down");
         }
       } else if (this.dir === "up") { // moving up
-        if (!this.bodyAtLeft(food)) {
+        if (!this.bodyAtLeft(food) && !this.wallLeft()) {
           this.snakeMovement("left");//33
-        } else if (!this.bodyAtTop(food)) {
+        } else if (!this.bodyAtTop(food) && !this.wallTop()) {
           this.snakeMovement("up");
-        } else if (!this.bodyAtRight(food)) {
+        } else if (!this.bodyAtRight(food) && !this.wallRight()) {
           this.snakeMovement("right");
         }
       } else if (this.dir === "down") { // moving down
-        if (!this.bodyAtLeft(food)) {
+        if (!this.bodyAtLeft(food) && !this.wallLeft()) {
           this.snakeMovement("left");
-        } else if (!this.bodyAtBottom(food)) {
+        } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
           this.snakeMovement("down");
-        } else if (!this.bodyAtRight(food)) {
+        } else if (!this.bodyAtRight(food) && !this.wallRight()) {
           this.snakeMovement("right");
         }
       }
@@ -206,35 +225,35 @@ class Snake {
       if(food.foodPos.y > this.headY) { // food at bottom
 
         if (this.dir === "down") { // moving down
-          if (!this.bodyAtBottom(food)) {
+          if (!this.bodyAtBottom(food) && !this.wallBottom()) {
             this.snakeMovement("down");
-          } else if (!this.bodyAtLeft(food)) {
-            this.snakeMovement("left");
-          }  else if (!this.bodyAtRight(food)) {
+          }  else if (!this.bodyAtRight(food) && !this.wallRight()) {
             this.snakeMovement("right");
+          } else if (!this.bodyAtLeft(food) && !this.wallLeft()) {
+            this.snakeMovement("left");
           }
         } else if(this.dir === "up") { // moving up
-          if (!this.bodyAtLeft(food)) {
+          if (!this.bodyAtLeft(food) && !this.wallLeft()) {
             this.snakeMovement("left");
-          } else if (!this.bodyAtTop(food)) {
-            this.snakeMovement("up");
-          } else if (!this.bodyAtRight(food)) {
+          } else if (!this.bodyAtRight(food) && !this.wallRight()) {
             this.snakeMovement("right");
+          } else if (!this.bodyAtTop(food) && !this.wallTop()) {
+            this.snakeMovement("up");
           }
         } if(this.dir === "left") { // moving left
-          if (!this.bodyAtBottom(food)) {
+          if (!this.bodyAtBottom(food) && !this.wallBottom()) {
             this.snakeMovement("down");
-          } else if(!this.bodyAtLeft(food)) {
+          } else if(!this.bodyAtLeft(food) && !this.wallLeft()) {
             this.snakeMovement("left");
-          } else if (!this.bodyAtTop(food)) {
+          } else if (!this.bodyAtTop(food) && !this.wallTop()) {
             this.snakeMovement("up");
           }
         } else if(this.dir === "right") { // moving right
-          if (!this.bodyAtBottom(food)) {
+          if (!this.bodyAtBottom(food) && !this.wallBottom()) {
             this.snakeMovement("down");
-          } else if (!this.bodyAtRight(food)) {
+          } else if (!this.bodyAtRight(food) && !this.wallRight()) {
             this.snakeMovement("right");
-          } else if (!this.bodyAtTop(food)) {
+          } else if (!this.bodyAtTop(food) && !this.wallTop()) {
             this.snakeMovement("up");
           }
         }
@@ -242,35 +261,35 @@ class Snake {
       } else { // food at top       if(food.foodPos.y <= this.headY)
 
         if(this.dir === "up") { //moving up
-          if (!this.bodyAtTop(food)) {
+          if (!this.bodyAtTop(food) && !this.wallTop()) {
             this.snakeMovement("up");
-          } else if (!this.bodyAtLeft(food)) {
-            this.snakeMovement("left");
-          } else if (!this.bodyAtRight(food)) {
+          } else if (!this.bodyAtRight(food) && !this.wallRight()) {
             this.snakeMovement("right");
+          } else if (!this.bodyAtLeft(food) && !this.wallLeft()) {
+            this.snakeMovement("left");
           }
         } else if (this.dir === "down") { // moving down
-          if (!this.bodyAtLeft(food)) {
+          if (!this.bodyAtLeft(food) && !this.wallLeft()) {
             this.snakeMovement("left");
-          }  else if (!this.bodyAtRight(food)) {
+          }  else if (!this.bodyAtRight(food) && !this.wallRight()) {
             this.snakeMovement("right");
-          } else if (!this.bodyAtBottom(food)) {
+          } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
             this.snakeMovement("down");
           }
         } else if(this.dir === "left") { // moving left
-          if (!this.bodyAtTop(food)) {
+          if (!this.bodyAtTop(food) && !this.wallTop()) {
             this.snakeMovement("up");
-          } else if(!this.bodyAtLeft(food)) {
+          } else if(!this.bodyAtLeft(food) && !this.wallLeft()) {
             this.snakeMovement("left");
-          } else if (!this.bodyAtBottom(food)) {
+          } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
             this.snakeMovement("down");
           }
         } else if(this.dir === "right") { // moving right
-          if (!this.bodyAtTop(food)) {
+          if (!this.bodyAtTop(food) && !this.wallTop()) {
             this.snakeMovement("up");
-          } else if (!this.bodyAtRight(food)) {
+          } else if (!this.bodyAtRight(food) && !this.wallRight()) {
             this.snakeMovement("right");
-          } else if (!this.bodyAtBottom(food)) {
+          } else if (!this.bodyAtBottom(food) && !this.wallBottom()) {
             this.snakeMovement("down");
           }
         }
