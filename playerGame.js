@@ -11,6 +11,7 @@ class PlayerGame {
     this.gameViewWidth = this.snakeCanvas.width;
 
     this.score = 0;
+    this.speed = 100;
     // document.addEventListener("keydown", this.keyDownHandler, false);
     // document.addEventListener("keyup", this.keyUpHandler, false);
     // this.direction = "down";
@@ -82,7 +83,7 @@ class PlayerGame {
       // debugger;
       // comment this back later
       // alert("GAME OVER");
-      // document.location.reload();
+      document.location.reload();
     }
 
     this.food.drawFood(this.ctx);
@@ -112,6 +113,7 @@ class PlayerGame {
     this.snake.snakeMovement(this.direction);
     if (this.snake.eat(this.food)) {
       this.score++;
+      // this.speed -= 5;
       this.food.drawRandomFood(this.gameViewWidth, this.gameViewHeight, this.snake);
     }
 

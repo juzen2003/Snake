@@ -6,13 +6,15 @@ let ai = new AIGame();
 function game() {
   human.gameForPlayer();
   ai.gameForAI();
+  // debugger
+  // console.log(human.speed);
 }
 const speed = 100;
 const startButton = document.getElementById("start-button");
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startEasyGame);
 
-
-function startGame() {
-  // debugger
-  setInterval(game, speed);
+// 100/50/25
+function startEasyGame() {
+  startButton.disabled = true;
+  setInterval(game, 80);
 }

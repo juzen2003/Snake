@@ -28,7 +28,7 @@ class Food {
 
   validFood(snake, x, y) {
     for(let i = 0; i < snake.length; i++) {
-      if(snake[i].x === x || snake[i].y === y || snake[i].x === x && snake[i].y === y) {
+      if(snake[i].x === x || snake[i].y === y || (snake[i].x === x && snake[i].y === y)) {
         return false;
       }
     }

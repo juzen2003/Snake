@@ -77,7 +77,7 @@ class AIGame {
     this.snake.move(this.food);
     if (this.snake.eat(this.food)) {
       this.score++;
-      // this.speed++;
+      // this.speed -= 5;
       // let randomWidthX = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
       // let randomHeightY = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
       this.food.drawRandomFood(this.gameViewWidth, this.gameViewWidth, this.snake);
