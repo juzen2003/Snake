@@ -8,6 +8,7 @@ const gameViewHeight = snakeCanvas.height;
 const gameViewWidth = snakeCanvas.width;
 
 let score = 0;
+let speed = 100;
 // init direction
 let direction = "down";
 let rightPressed = false;
@@ -71,6 +72,7 @@ export function gameForAI() {
   snake.move(food);
   if (snake.eat(food)) {
     score++;
+    speed++;
     // let randomWidthX = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
     // let randomHeightY = gameViewWidth / (Math.floor( Math.random() * 4 + 1));
     food.drawRandomFood(gameViewWidth, gameViewWidth, snake);

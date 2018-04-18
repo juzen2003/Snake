@@ -65,9 +65,11 @@ class Snake {
 
   // check if body at right
   bodyAtRight(food) {
+    // debugger
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body right
-      if(this.snakeArr[i].x <= food.foodPos.x && this.snakeArr[i].x > this.headX) {
+      if(this.snakeArr[i].x <= food.foodPos.x && this.snakeArr[i].x >= this.headX) {
+      // if(this.snakeArr[i].x >= this.headX) {
         if(this.snakeArr[i].y === this.headY) {
           // debugger
           return true;
@@ -79,9 +81,11 @@ class Snake {
 
   // check if body at left
   bodyAtLeft(food) {
+    // debugger
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body left
-      if(this.snakeArr[i].x >= food.foodPos.x && this.snakeArr[i].x < this.headX) {
+      if(this.snakeArr[i].x >= food.foodPos.x && this.snakeArr[i].x <= this.headX) {
+      // if(this.snakeArr[i].x <= this.headX) {
         if(this.snakeArr[i].y === this.headY) {
           return true;
         }
@@ -92,10 +96,12 @@ class Snake {
 
   // check if body at top
   bodyAtTop(food) {
+    // debugger
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body top
-      if(this.snakeArr[i].y >= food.foodPos.y && this.snakeArr[i].y < this.headY) {
-        if(this.snakeArr[i].x === this.headx) {
+      if(this.snakeArr[i].y >= food.foodPos.y && this.snakeArr[i].y <= this.headY) {
+      // if(this.snakeArr[i].y <= this.headY) {
+        if(this.snakeArr[i].x === this.headX) {
           return true;
         }
       }
@@ -105,10 +111,12 @@ class Snake {
 
   // check if body at bottom
   bodyAtBottom(food) {
+    // debugger
     for (let i = 1; i < this.snakeArr.length; i++) {
       // check body bottom
-      if(this.snakeArr[i].y <= food.foodPos.y && this.snakeArr[i].y > this.headY) {
-        if(this.snakeArr[i].x === this.headx) {
+      if(this.snakeArr[i].y <= food.foodPos.y && this.snakeArr[i].y >= this.headY) {
+      // if(this.snakeArr[i].y >= this.headY) {
+        if(this.snakeArr[i].x === this.headX) {
           return true;
         }
       }
@@ -132,10 +140,10 @@ class Snake {
       } else if(this.dir === "left") { // moving left
         if (!this.bodyAtTop(food)) {
           this.snakeMovement("up");
-        } else if (!this.bodyAtBottom(food)) {
-          this.snakeMovement("down");
         } else if (!this.bodyAtLeft(food)) {
           this.snakeMovement("left");
+        } else if (!this.bodyAtBottom(food)) {
+          this.snakeMovement("down");
         }
       } else if (this.dir === "up") { // moving up
         if (!this.bodyAtRight(food)) {
@@ -171,14 +179,14 @@ class Snake {
       } else if(this.dir === "right") { // moving right
         if (!this.bodyAtTop(food)) {
           this.snakeMovement("up");
-        } else if (!this.bodyAtBottom(food)) {
-          this.snakeMovement("down");
         } else if (!this.bodyAtRight(food)) {
           this.snakeMovement("right");
+        } else if (!this.bodyAtBottom(food)) {
+          this.snakeMovement("down");
         }
       } else if (this.dir === "up") { // moving up
         if (!this.bodyAtLeft(food)) {
-          this.snakeMovement("left");
+          this.snakeMovement("left");//33
         } else if (!this.bodyAtTop(food)) {
           this.snakeMovement("up");
         } else if (!this.bodyAtRight(food)) {
@@ -208,10 +216,10 @@ class Snake {
         } else if(this.dir === "up") { // moving up
           if (!this.bodyAtLeft(food)) {
             this.snakeMovement("left");
-          } else if (!this.bodyAtRight(food)) {
-            this.snakeMovement("right");
           } else if (!this.bodyAtTop(food)) {
             this.snakeMovement("up");
+          } else if (!this.bodyAtRight(food)) {
+            this.snakeMovement("right");
           }
         } if(this.dir === "left") { // moving left
           if (!this.bodyAtBottom(food)) {
@@ -231,7 +239,7 @@ class Snake {
           }
         }
 
-      } else  { // food at top if(food.foodPos.y < this.headY)
+      } else { // food at top       if(food.foodPos.y <= this.headY)
 
         if(this.dir === "up") { //moving up
           if (!this.bodyAtTop(food)) {
@@ -266,7 +274,6 @@ class Snake {
             this.snakeMovement("down");
           }
         }
-
       }
     }
   }

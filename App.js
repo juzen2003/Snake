@@ -5,11 +5,12 @@ function game() {
   // gameForPlayer();
   gameForAI();
 }
-
+const speed = 100;
 const startButton = document.getElementById("start-button");
 startButton.addEventListener("click", startGame);
 
+
 function startGame() {
   // debugger
-  setInterval(game, 100);
+  setInterval(game, speed);
 }
