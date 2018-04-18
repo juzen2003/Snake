@@ -1,120 +1,151 @@
 import Snake from './snake';
-import Food from './food.js';
+import Food from './food';
 
-var snakeCanvas = document.getElementById("human-game-canvas");
-var ctx = snakeCanvas.getContext("2d");
+class PlayerGame {
 
-const gameViewHeight = snakeCanvas.height;
-const gameViewWidth = snakeCanvas.width;
+  constructor() {
+    this.snakeCanvas = document.getElementById("human-game-canvas");
+    this.ctx = this.snakeCanvas.getContext("2d");
 
-let score = 0;
-// init direction
-let direction = "down";
-let rightPressed = false;
-let leftPressed = false;
-let upPressed = false;
-let downPressed = false;
+    this.gameViewHeight = this.snakeCanvas.height;
+    this.gameViewWidth = this.snakeCanvas.width;
 
-let snake = new Snake();
-let food = new Food();
-food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
+    this.score = 0;
+    // document.addEventListener("keydown", this.keyDownHandler, false);
+    // document.addEventListener("keyup", this.keyUpHandler, false);
+    this.direction = "down";
+    this.rightPressed = false;
+    this.leftPressed = false;
+    this.upPressed = false;
+    this.downPressed = false;
 
-// check wall collision
-function wallCollisionCheck(x, y) {
-  // debugger;
-  if(x === -1 || y === -1 || (x === gameViewWidth / snake.unitSize) || (y === gameViewHeight / snake.unitSize)) {
-    return true;
-  } else {
+    this.snake = new Snake();
+    this.food = new Food();
+    this.food.drawRandomFood(this.gameViewWidth, this.gameViewHeight, this.snake);
+
+
+    this.keyUpHandler = this.keyUpHandler.bind(this);
+    this.keyDownHandler = this.keyDownHandler.bind(this);
+  }
+
+  // init direction
+  init() {
+    this.direction = "down";
+    this.rightPressed = false;
+    this.leftPressed = false;
+    this.upPressed = false;
+    this.downPressed = false;
+
+    this.snake = new Snake();
+    this.food = new Food();
+    this.food.drawRandomFood(this.gameViewWidth, this.gameViewHeight, this.snake);
+  }
+
+  // check wall collision
+  wallCollisionCheck(x, y) {
+    // debugger;
+    if(x === -1 || y === -1 || (x === this.gameViewWidth / this.snake.unitSize) || (y === this.gameViewHeight / this.snake.unitSize)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // check body collision
+  bodyCollisionCheck(x, y) {
+    for (let i = 1; i < this.snake.snakeArr.length; i++) {
+      if(this.snake.snakeArr[i].x === x && this.snake.snakeArr[i].y === y) {
+        return true;
+      }
+    }
+
     return false;
   }
-}
 
-// check body collision
-function bodyCollisionCheck(x, y) {
-  for (let i = 1; i < snake.snakeArr.length; i++) {
-    if(snake.snakeArr[i].x === x && snake.snakeArr[i].y === y) {
-      return true;
+  drawScore() {
+    this.ctx.beginPath();
+    this.ctx.font = "16px Arial";
+    this.ctx.fillStyle = "#0095DD";
+    this.ctx.fillText("Score: " + this.score, 8, 20);
+    this.ctx.closePath();
+  }
+
+  gameForPlayer() {
+    // clear the screen;
+    document.addEventListener("keydown", this.keyDownHandler, false);
+    document.addEventListener("keyup", this.keyUpHandler, false);
+    this.ctx.clearRect(0, 0, this.snakeCanvas.width, this.snakeCanvas.height);
+    // food.drawFood(ctx, 24, 0);
+
+    // collision check
+    if (this.bodyCollisionCheck(this.snake.headX, this.snake.headY) || this.wallCollisionCheck(this.snake.headX, this.snake.headY)) {
+      // debugger;
+      // comment this back later
+      // alert("GAME OVER");
+      // document.location.reload();
+    }
+
+    this.food.drawFood(this.ctx);
+    // food.drawfoodPic(ctx);
+    this.snake.drawSnake(this.ctx);
+    this.drawScore();
+
+    // debugger
+    if(this.rightPressed) {
+      // debugger
+      if (this.direction !== "left") {
+        this.direction = "right";
+      }
+    } else if (this.leftPressed) {
+      if (this.direction !== "right") {
+        this.direction = "left";
+      }
+    } else if (this.upPressed) {
+      if (this.direction !== "down") {
+        this.direction = "up";
+      }
+    } else if (this.downPressed) {
+      if (this.direction !== "up") {
+        this.direction = "down";
+      }
+    }
+    this.snake.snakeMovement(this.direction);
+    if (this.snake.eat(this.food)) {
+      this.score++;
+      this.food.drawRandomFood(this.gameViewWidth, this.gameViewHeight, this.snake);
+    }
+
+  }
+
+
+
+  keyDownHandler(e) {
+    if(e.keyCode === 39) {
+        this.rightPressed = true;
+    } else if(e.keyCode === 37) {
+        this.leftPressed = true;
+    } else if(e.keyCode === 38) {
+        this.upPressed = true;
+    } else if(e.keyCode === 40) {
+        this.downPressed = true;
+    }
+    // debugger
+  }
+
+  keyUpHandler(e) {
+    if(e.keyCode === 39) {
+        this.rightPressed = false;
+    } else if(e.keyCode === 37) {
+        this.leftPressed = false;
+    } else if(e.keyCode === 38) {
+        this.upPressed = false;
+    } else if(e.keyCode === 40) {
+        this.downPressed = false;
     }
   }
 
-  return false;
-}
 
-function drawScore() {
-  ctx.beginPath();
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
-  ctx.fillText("Score: " + score, 8, 20);
-  ctx.closePath();
-}
-
-export function gameForPlayer() {
-  // clear the screen;
-  ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
-  // food.drawFood(ctx, 24, 0);
-
-  // collision check
-  if (bodyCollisionCheck(snake.headX, snake.headY) || wallCollisionCheck(snake.headX, snake.headY)) {
-    // debugger;
-    // comment this back later
-    // alert("GAME OVER");
-    // document.location.reload();
-  }
-
-  food.drawFood(ctx);
-  // food.drawfoodPic(ctx);
-  snake.drawSnake(ctx);
-  drawScore();
-
-
-  if(rightPressed) {
-    if (direction !== "left") {
-      direction = "right";
-    }
-  } else if (leftPressed) {
-    if (direction !== "right") {
-      direction = "left";
-    }
-  } else if (upPressed) {
-    if (direction !== "down") {
-      direction = "up";
-    }
-  } else if (downPressed) {
-    if (direction !== "up") {
-      direction = "down";
-    }
-  }
-  snake.snakeMovement(direction);
-  if (snake.eat(food)) {
-    score++;
-    food.drawRandomFood(gameViewWidth, gameViewHeight, snake);
-  }
 
 }
 
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
-
-function keyDownHandler(e) {
-  if(e.keyCode === 39) {
-      rightPressed = true;
-  } else if(e.keyCode === 37) {
-      leftPressed = true;
-  } else if(e.keyCode === 38) {
-      upPressed = true;
-  } else if(e.keyCode === 40) {
-      downPressed = true;
-  }
-}
-
-function keyUpHandler(e) {
-  if(e.keyCode === 39) {
-      rightPressed = false;
-  } else if(e.keyCode === 37) {
-      leftPressed = false;
-  } else if(e.keyCode === 38) {
-      upPressed = false;
-  } else if(e.keyCode === 40) {
-      downPressed = false;
-  }
-}
+export default PlayerGame;

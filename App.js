@@ -1,8 +1,10 @@
-import {gameForPlayer} from './playerGame';
+import PlayerGame from './playerGame';
 import {gameForAI} from './AIGame';
 
+let humanGame = new PlayerGame();
 function game() {
-  // gameForPlayer();
+
+  humanGame.gameForPlayer();
   gameForAI();
 }
 const speed = 100;
