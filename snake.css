@@ -1,7 +1,16 @@
+@font-face {
+  font-family: 'classic-font';
+  src: url('font/SinclairZXSpectrumES.ttf') format('truetype');
+}
+
 body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#start-button {
+  font-family: "classic-font";
 }
 
 #human-game-canvas {
