@@ -48,7 +48,7 @@ class AIGame {
 
   drawScore() {
     this.ctx.beginPath();
-    this.ctx.font = "16px Arial";
+    this.ctx.font = "16px classic-font";
     this.ctx.fillStyle = "#0095DD";
     this.ctx.fillText("Score: " + this.score, 8, 20);
     this.ctx.closePath();
@@ -66,6 +66,7 @@ class AIGame {
       // alert("GAME OVER");
       //
       // document.location.reload();
+      this.score--;
     }
 
     this.food.drawFood(this.ctx);
