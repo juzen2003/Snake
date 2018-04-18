@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <!-- tab name -->
     <title>Snake</title>
     <style>
       canvas {
@@ -12,11 +13,24 @@
       }
     </style>
     <!-- link to css file if needed -->
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="snake.css">
   </head>
   <body>
     <canvas id="human-game-canvas" width="500" height="500"></canvas>
-    <button id="start-button">Play</button>
+    <div class="info-area">
+      <h2 id="game-title">SNAKE vs SNAKE</h2>
+      <div class="key-board-area">
+        <p id="w-key">W</p>
+        <div class="keyboard-2nd-row">
+          <p id="a-key">A</p>
+          <p id="s-key">S</p>
+          <p id="d-key">D</p>
+        </div>
+      </div>
+      <p>control on left screen</p>
+      <button id="start-button">PLAY</button>
+    </div>
     <canvas id="ai-game-canvas" width="500" height="500"></canvas>
     <script src="./app/assets/javascripts/bundle.js"></script>
     <!-- <script src="./app.js"></script> -->

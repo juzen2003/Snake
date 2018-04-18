@@ -119,29 +119,28 @@ class PlayerGame {
 
   }
 
-
-
+  // Use a w s d to control
   keyDownHandler(e) {
-    if(e.keyCode === 39) {
+    if(e.keyCode === 68) {
         this.rightPressed = true;
-    } else if(e.keyCode === 37) {
+    } else if(e.keyCode === 65) {
         this.leftPressed = true;
-    } else if(e.keyCode === 38) {
+    } else if(e.keyCode === 87) {
         this.upPressed = true;
-    } else if(e.keyCode === 40) {
+    } else if(e.keyCode === 83) {
         this.downPressed = true;
     }
     // debugger
   }
 
   keyUpHandler(e) {
-    if(e.keyCode === 39) {
+    if(e.keyCode === 68) {
         this.rightPressed = false;
-    } else if(e.keyCode === 37) {
+    } else if(e.keyCode === 65) {
         this.leftPressed = false;
-    } else if(e.keyCode === 38) {
+    } else if(e.keyCode === 87) {
         this.upPressed = false;
-    } else if(e.keyCode === 40) {
+    } else if(e.keyCode === 83) {
         this.downPressed = false;
     }
   }
