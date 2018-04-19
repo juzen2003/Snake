@@ -22,7 +22,9 @@ class Snake {
     ctx.beginPath();
     ctx.rect(x * this.unitSize, y * this.unitSize, this.unitSize, this.unitSize);
     // ctx.fillStyle = "#F5FA30";
-    ctx.fillStyle = "#000";
+    // ctx.fillStyle = "#000";
+    ctx.fillStyle = "#585858";
+
     ctx.fill();
     // border
     // ctx.strokeStyle = "red";
