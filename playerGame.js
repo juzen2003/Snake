@@ -95,6 +95,7 @@ class PlayerGame {
       // alert("GAME OVER");
       // document.location.reload();
       this.score--;
+      this.snake.snakeArr.pop();
     }
 
     this.food.drawFood(this.ctx);
@@ -129,12 +130,14 @@ class PlayerGame {
         this.snake.headX = this.snake.snakeArr[0].x;
         this.snake.headY = this.snake.snakeArr[0].y;
         this.score--;
+        this.snake.snakeArr.pop();
       } else if(this.direction === "up" && this.snake.headY === 0) {
         this.direction = "down";
         this.snake.snakeArr = this.snake.snakeArr.reverse();
         this.snake.headX = this.snake.snakeArr[0].x;
         this.snake.headY = this.snake.snakeArr[0].y;
         this.score--;
+        this.snake.snakeArr.pop();
       } else if(this.direction === "down" && this.snake.headY === this.gameViewHeight / this.snake.unitSize - 1) {
         // debugger
         this.direction = "up";
@@ -142,6 +145,7 @@ class PlayerGame {
         this.snake.headX = this.snake.snakeArr[0].x;
         this.snake.headY = this.snake.snakeArr[0].y;
         this.score--;
+        this.snake.snakeArr.pop();
       } else if(this.direction === "left" && this.snake.headX === 0) {
         // debugger
         this.direction = "right";
@@ -149,6 +153,7 @@ class PlayerGame {
         this.snake.headX = this.snake.snakeArr[0].x;
         this.snake.headY = this.snake.snakeArr[0].y;
         this.score--;
+        this.snake.snakeArr.pop();
       }
     }
 

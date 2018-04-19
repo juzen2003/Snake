@@ -5,10 +5,11 @@ let human = new PlayerGame();
 let ai = new AIGame();
 let count = 0;
 
-function countDown() {
+function countDown(initTime) {
   let timeText = document.getElementById("timer");
-  let initTime = 10;
-  timeText.innerHTML = initTime;
+  // let initTime = 10;
+  timeText.innerHTML = `TIME LEFT: ${30-initTime}`;
+  // debugger
 
 }
 
@@ -20,9 +21,14 @@ function game() {
   // timer here, 10000 ms = 10s
   // console.log(count);
   // setInterval(time, 10000);
-  setTimeout(time, 60000);
+  // setTimeout(time, 0);
+  time();
   // console.log(`After: ${count}`);
-  if(count === 10) {
+  // every 10 count as 1s
+  if(count % 15 === 0) {
+    countDown(count / 15);
+  }
+  if(count === 450) {
     document.location.reload();
 
     alert(`You score ${human.score} points vs AI: ${ai.score} points!`);
@@ -40,7 +46,7 @@ startButton.addEventListener("click", startGame);
 
 function startGame() {
   count = 0;
-  countDown();
+  // countDown(10);
   startButton.disabled = true;
   setInterval(game, 80);
 

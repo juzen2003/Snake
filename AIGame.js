@@ -76,6 +76,7 @@ class AIGame {
       //
       // document.location.reload();
       this.score--;
+      this.snake.snakeArr.pop();
     }
 
     this.food.drawFood(this.ctx);
