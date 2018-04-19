@@ -45,8 +45,15 @@ function game() {
                            <p>AI SCORE: ${ai.score} POINTS</p>
                            <button id="reset-button">OK</button>`;
 
+    const okButton = document.getElementById("reset-button");
+    okButton.addEventListener("click", reload);
+
     // alert(`You score ${human.score} points vs AI: ${ai.score} points!`);
   }
+}
+
+function reload() {
+  document.location.reload();
 }
 
 function time() {
