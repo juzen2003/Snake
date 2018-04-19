@@ -4,6 +4,7 @@ import AIGame from './aiGame';
 let human = new PlayerGame();
 let ai = new AIGame();
 let count = 0;
+let winner;
 let gameRun;
 
 function countDown(initTime, total) {
@@ -41,9 +42,21 @@ function game() {
         result[i].classList.add("is-open");
       }
     }
-    
-    result[0].innerHTML = `<p>YOUR SCORE: ${human.score} POINTS</p>
-                           <p>AI SCORE: ${ai.score} POINTS</p>
+
+    if(human.score > ai.score) {
+      winner = "YOW WIN";
+    } else if(human.score < ai.score) {
+      winner = "YOU LOSE";
+    } else {
+      winner = "TIED";
+    }
+
+    // result[0].innerHTML = `<p>${winner}</p>
+    //                        <p>YOUR SCORE: ${human.score} POINTS</p>
+    //                        <p>AI SCORE: ${ai.score} POINTS</p>
+    //                        <button id="reset-button">OK</button>`;
+    result[0].innerHTML = `<p>${winner}</p>
+                           <p>${human.score} POINTS : ${ai.score} POINTS</p>
                            <button id="reset-button">OK</button>`;
 
     const okButton = document.getElementById("reset-button");
