@@ -4,6 +4,7 @@ import AIGame from './aiGame';
 let human = new PlayerGame();
 let ai = new AIGame();
 let count = 0;
+let gameRun;
 
 function countDown(initTime, total) {
   let timeText = document.getElementById("timer");
@@ -31,9 +32,18 @@ function game() {
   // 460 for 30s
   // 45
   if(count === 46) {
-    document.location.reload();
-
-    let result = document.getElementById("result-area");
+    // document.location.reload();
+    // this would stop the game, isntead of reload
+    clearInterval(gameRun);
+    let result = document.getElementsByClassName("result-area");
+    for(let i = 0; i < result.length; i++) {
+      if(!result[i].classList.contains("is-open")) {
+        result[i].classList.add("is-open");
+      }
+    }
+    result[0].innerHTML = `<p>YOUR SCORE: ${human.score} POINTS</p>
+                           <p>AI SCORE: ${ai.score} POINTS</p>
+                           <button id="reset-button">OK</button>`;
 
     // alert(`You score ${human.score} points vs AI: ${ai.score} points!`);
   }
@@ -52,6 +62,6 @@ function startGame() {
   count = 0;
   // countDown(10);
   startButton.disabled = true;
-  setInterval(game, 80);
+  gameRun = setInterval(game, 80);
 
 }
