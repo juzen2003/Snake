@@ -21,7 +21,7 @@ function game() {
   // console.log(count);
   // setInterval(time, 10000);
   setTimeout(time, 60000);
-  console.log(`After: ${count}`);
+  // console.log(`After: ${count}`);
   if(count === 10) {
     document.location.reload();
 

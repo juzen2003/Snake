@@ -125,15 +125,31 @@ class PlayerGame {
       if (this.willTouchWall(this.snake.headX, this.snake.headY)) {
         // turn around if no key is pressed
         if(this.direction === "right" && this.snake.headX === this.gameViewWidth / this.snake.unitSize - 1) {
-          this.direction = "down";
+          this.direction = "left";
+          this.snake.snakeArr = this.snake.snakeArr.reverse();
+          this.snake.headX = this.snake.snakeArr[0].x;
+          this.snake.headY = this.snake.snakeArr[0].y;
+          this.score--;
         } else if(this.direction === "up" && this.snake.headY === 0) {
-          this.direction = "right";
+          this.direction = "down";
+          this.snake.snakeArr = this.snake.snakeArr.reverse();
+          this.snake.headX = this.snake.snakeArr[0].x;
+          this.snake.headY = this.snake.snakeArr[0].y;
+          this.score--;
         } else if(this.direction === "down" && this.snake.headY === this.gameViewHeight / this.snake.unitSize - 1) {
           // debugger
-          this.direction = "left";
+          this.direction = "up";
+          this.snake.snakeArr = this.snake.snakeArr.reverse();
+          this.snake.headX = this.snake.snakeArr[0].x;
+          this.snake.headY = this.snake.snakeArr[0].y;
+          this.score--;
         } else if(this.direction === "left" && this.snake.headX === 0) {
           // debugger
-          this.direction = "up";
+          this.direction = "right";
+          this.snake.snakeArr = this.snake.snakeArr.reverse();
+          this.snake.headX = this.snake.snakeArr[0].x;
+          this.snake.headY = this.snake.snakeArr[0].y;
+          this.score--;
         }
       }
     }
