@@ -40,9 +40,11 @@ body {
 }
 
 #timer {
-  padding: 10px;
+  margin: 10px;
   font-size: 14px;
   font-family: "classic-font";
+  color: #E7311B;
+  height: 14px;
 }
 
 #ending {
@@ -51,6 +53,7 @@ body {
 
 #game-title {
   font-size: 20px;
+  margin: 10px 0;
 }
 
 #start-button {
@@ -75,4 +78,8 @@ body {
 
 #ai-game-canvas {
   border: 1px solid black;
+}
+
+#result-area {
+  display: none;
 }

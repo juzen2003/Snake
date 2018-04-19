@@ -5,10 +5,10 @@ let human = new PlayerGame();
 let ai = new AIGame();
 let count = 0;
 
-function countDown(initTime) {
+function countDown(initTime, total) {
   let timeText = document.getElementById("timer");
   // let initTime = 10;
-  timeText.innerHTML = `TIME LEFT: ${30-initTime}`;
+  timeText.innerHTML = `TIME LEFT: ${total-initTime}`;
   // debugger
 
 }
@@ -25,13 +25,17 @@ function game() {
   // console.log(`After: ${count}`);
   // every 10 count as 1s
   if(count % 15 === 0) {
-    countDown(count / 15);
+    countDown(count / 15, Math.floor(46/15));
   }
   time();
-  if(count === 460) {
+  // 460 for 30s
+  // 45
+  if(count === 46) {
     document.location.reload();
 
-    alert(`You score ${human.score} points vs AI: ${ai.score} points!`);
+    let result = document.getElementById("result-area");
+
+    // alert(`You score ${human.score} points vs AI: ${ai.score} points!`);
   }
 }
 
