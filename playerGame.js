@@ -53,6 +53,15 @@ class PlayerGame {
     }
   }
 
+  willTouchWall(x, y) {
+    if(x === 0 || y === 0 || (x === this.gameViewWidth / this.snake.unitSize - 1) || (y === this.gameViewHeight / this.snake.unitSize -1)) {
+      return true;
+    } else {
+      return false;
+    }
+    // debugger
+  }
+
   // check body collision
   bodyCollisionCheck(x, y) {
     for (let i = 1; i < this.snake.snakeArr.length; i++) {
@@ -68,7 +77,7 @@ class PlayerGame {
     this.ctx.beginPath();
     this.ctx.font = "16px classic-font";
     this.ctx.fillStyle = "#0095DD";
-    this.ctx.fillText("Score: " + this.score, 8, 20);
+    this.ctx.fillText("YOUR SCORE: " + this.score, 8, 20);
     this.ctx.closePath();
   }
 
@@ -79,7 +88,8 @@ class PlayerGame {
     this.ctx.clearRect(0, 0, this.snakeCanvas.width, this.snakeCanvas.height);
 
     // collision check
-    if (this.bodyCollisionCheck(this.snake.headX, this.snake.headY) || this.wallCollisionCheck(this.snake.headX, this.snake.headY)) {
+    // if (this.bodyCollisionCheck(this.snake.headX, this.snake.headY) || this.wallCollisionCheck(this.snake.headX, this.snake.headY)) {
+    if (this.bodyCollisionCheck(this.snake.headX, this.snake.headY)) {
       // debugger;
       // comment this back later
       // alert("GAME OVER");
@@ -110,7 +120,24 @@ class PlayerGame {
       if (this.direction !== "up") {
         this.direction = "down";
       }
+    } else {
+      // debugger
+      if (this.willTouchWall(this.snake.headX, this.snake.headY)) {
+        // turn around if no key is pressed
+        if(this.direction === "right" && this.snake.headX === this.gameViewWidth / this.snake.unitSize - 1) {
+          this.direction = "down";
+        } else if(this.direction === "up" && this.snake.headY === 0) {
+          this.direction = "right";
+        } else if(this.direction === "down" && this.snake.headY === this.gameViewHeight / this.snake.unitSize - 1) {
+          // debugger
+          this.direction = "left";
+        } else if(this.direction === "left" && this.snake.headX === 0) {
+          // debugger
+          this.direction = "up";
+        }
+      }
     }
+
     this.snake.snakeMovement(this.direction);
     if (this.snake.eat(this.food)) {
       this.score++;

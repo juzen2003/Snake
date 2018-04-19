@@ -50,7 +50,7 @@ class AIGame {
     this.ctx.beginPath();
     this.ctx.font = "16px classic-font";
     this.ctx.fillStyle = "#0095DD";
-    this.ctx.fillText("Score: " + this.score, 8, 20);
+    this.ctx.fillText("AI SCORE: " + this.score, 8, 20);
     this.ctx.closePath();
   }
 
