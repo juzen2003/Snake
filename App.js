@@ -22,13 +22,13 @@ function game() {
   // console.log(count);
   // setInterval(time, 10000);
   // setTimeout(time, 0);
-  time();
   // console.log(`After: ${count}`);
   // every 10 count as 1s
   if(count % 15 === 0) {
     countDown(count / 15);
   }
-  if(count === 450) {
+  time();
+  if(count === 460) {
     document.location.reload();
 
     alert(`You score ${human.score} points vs AI: ${ai.score} points!`);
