@@ -143,6 +143,10 @@ class Snake {
     return false;
   }
 
+  bounceBack() {
+    
+  }
+
   // move for AI
   move(food) {
     if(food.foodPos.x > this.headX) { // food at right

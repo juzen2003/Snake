@@ -105,52 +105,50 @@ class PlayerGame {
     // debugger
     if(this.rightPressed) {
       // debugger
-      if (this.direction !== "left") {
+      if (this.direction !== "left" && this.direction !== "right") {
         this.direction = "right";
       }
     } else if (this.leftPressed) {
-      if (this.direction !== "right") {
+      if (this.direction !== "right" && this.direction !== "left") {
         this.direction = "left";
       }
     } else if (this.upPressed) {
-      if (this.direction !== "down") {
+      if (this.direction !== "down" && this.direction !== "up" && this.snake.headY !== 0) {
         this.direction = "up";
       }
     } else if (this.downPressed) {
-      if (this.direction !== "up") {
+      if (this.direction !== "up" && this.direction !== "down") {
         this.direction = "down";
       }
     } else {
-      // debugger
-      if (this.willTouchWall(this.snake.headX, this.snake.headY)) {
-        // turn around if no key is pressed
-        if(this.direction === "right" && this.snake.headX === this.gameViewWidth / this.snake.unitSize - 1) {
-          this.direction = "left";
-          this.snake.snakeArr = this.snake.snakeArr.reverse();
-          this.snake.headX = this.snake.snakeArr[0].x;
-          this.snake.headY = this.snake.snakeArr[0].y;
-          this.score--;
-        } else if(this.direction === "up" && this.snake.headY === 0) {
-          this.direction = "down";
-          this.snake.snakeArr = this.snake.snakeArr.reverse();
-          this.snake.headX = this.snake.snakeArr[0].x;
-          this.snake.headY = this.snake.snakeArr[0].y;
-          this.score--;
-        } else if(this.direction === "down" && this.snake.headY === this.gameViewHeight / this.snake.unitSize - 1) {
-          // debugger
-          this.direction = "up";
-          this.snake.snakeArr = this.snake.snakeArr.reverse();
-          this.snake.headX = this.snake.snakeArr[0].x;
-          this.snake.headY = this.snake.snakeArr[0].y;
-          this.score--;
-        } else if(this.direction === "left" && this.snake.headX === 0) {
-          // debugger
-          this.direction = "right";
-          this.snake.snakeArr = this.snake.snakeArr.reverse();
-          this.snake.headX = this.snake.snakeArr[0].x;
-          this.snake.headY = this.snake.snakeArr[0].y;
-          this.score--;
-        }
+      // this is when snake hit the wall:
+      // turn around if no key is pressed
+      if(this.direction === "right" && this.snake.headX === this.gameViewWidth / this.snake.unitSize - 1) {
+        this.direction = "left";
+        this.snake.snakeArr = this.snake.snakeArr.reverse();
+        this.snake.headX = this.snake.snakeArr[0].x;
+        this.snake.headY = this.snake.snakeArr[0].y;
+        this.score--;
+      } else if(this.direction === "up" && this.snake.headY === 0) {
+        this.direction = "down";
+        this.snake.snakeArr = this.snake.snakeArr.reverse();
+        this.snake.headX = this.snake.snakeArr[0].x;
+        this.snake.headY = this.snake.snakeArr[0].y;
+        this.score--;
+      } else if(this.direction === "down" && this.snake.headY === this.gameViewHeight / this.snake.unitSize - 1) {
+        // debugger
+        this.direction = "up";
+        this.snake.snakeArr = this.snake.snakeArr.reverse();
+        this.snake.headX = this.snake.snakeArr[0].x;
+        this.snake.headY = this.snake.snakeArr[0].y;
+        this.score--;
+      } else if(this.direction === "left" && this.snake.headX === 0) {
+        // debugger
+        this.direction = "right";
+        this.snake.snakeArr = this.snake.snakeArr.reverse();
+        this.snake.headX = this.snake.snakeArr[0].x;
+        this.snake.headY = this.snake.snakeArr[0].y;
+        this.score--;
       }
     }
 
@@ -165,13 +163,13 @@ class PlayerGame {
 
   // Use a w s d to control
   keyDownHandler(e) {
-    if(e.keyCode === 68) {
+    if(e.keyCode === 68 && this.direction !== "right") {
         this.rightPressed = true;
-    } else if(e.keyCode === 65) {
+    } else if(e.keyCode === 65 && this.direction !== "left") {
         this.leftPressed = true;
-    } else if(e.keyCode === 87) {
+    } else if(e.keyCode === 87 && this.direction !== "up") {
         this.upPressed = true;
-    } else if(e.keyCode === 83) {
+    } else if(e.keyCode === 83 && this.direction !== "down") {
         this.downPressed = true;
     }
     // debugger

@@ -35,6 +35,15 @@ class AIGame {
     }
   }
 
+  willTouchWall(x, y) {
+    if(x === 0 || y === 0 || (x === this.gameViewWidth / this.snake.unitSize - 1) || (y === this.gameViewHeight / this.snake.unitSize -1)) {
+      return true;
+    } else {
+      return false;
+    }
+    // debugger
+  }
+
   // check body collision
   bodyCollisionCheck(x, y) {
     for (let i = 1; i < this.snake.snakeArr.length; i++) {
