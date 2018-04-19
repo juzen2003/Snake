@@ -9,8 +9,14 @@ class Food {
     ctx.beginPath();
     // make it circle, can change later
     ctx.arc(this.foodPos.x * this.unitSize + this.unitSize/2 , this.foodPos.y * this.unitSize + this.unitSize/2, foodRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#3D9728";
+    // ctx.fillStyle = "#3D9728";
+    ctx.fillStyle = "#f1f1f1";
     ctx.fill();
+
+    ctx.strokeStyle = "#FFF";
+    ctx.lineWidth=3;
+    ctx.stroke();
+
     ctx.closePath();
   }
 

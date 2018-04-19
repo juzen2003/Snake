@@ -41,6 +41,7 @@ function game() {
         result[i].classList.add("is-open");
       }
     }
+    
     result[0].innerHTML = `<p>YOUR SCORE: ${human.score} POINTS</p>
                            <p>AI SCORE: ${ai.score} POINTS</p>
                            <button id="reset-button">OK</button>`;

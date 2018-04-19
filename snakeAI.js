@@ -25,10 +25,13 @@ class Snake {
   drawAUnitSquare(ctx, x, y) {
     ctx.beginPath();
     ctx.rect(x * this.unitSize, y * this.unitSize, this.unitSize, this.unitSize);
-    ctx.fillStyle = "#F5FA30";
+    // ctx.fillStyle = "#F5FA30";
+    ctx.fillStyle = "#000";
     ctx.fill();
     // border
-    ctx.strokeStyle = "red";
+    // ctx.strokeStyle = "red";
+    ctx.strokeStyle = "#FFF";
+    ctx.lineWidth=3;
     ctx.stroke();
     ctx.closePath();
   }
@@ -144,7 +147,7 @@ class Snake {
   }
 
   bounceBack() {
-    
+
   }
 
   // move for AI
