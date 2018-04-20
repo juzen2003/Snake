@@ -8,7 +8,7 @@
 + Within 1 minute, user controls a snake to compete for food with the ai snake, and whoever gets the higher points will win.
 + Whenever the snake gets the good, it would increase the points and its length by 1 pixel.
 + Whenever the snake hits the wall or it's own body, it would shrink and lose 1 points
-+ To compensate the fairness of the game, AI snake would get 2 points deducted whenever it hits walls or its own body.
++ To compensate the fairness and also keep the difficulty of the game, AI snake would lose 2 points whenever it hits walls or its own body.
 
 ### Technologies
 
