@@ -60,3 +60,4 @@ Challenge AI and go for the WIN!!!
 
 ### MISC
 * Allow user to switch difficulty or change level.
+* Add 8-bit background music
