@@ -26,6 +26,7 @@ function game() {
   // setTimeout(time, 0);
   // console.log(`After: ${count}`);
   // every 10 count as 1s
+  // 910 ~ 1 min
   if(count % 15 === 0) {
     countDown(count / 15, Math.floor(910/15));
   }

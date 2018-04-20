@@ -94,7 +94,8 @@ var Food = function () {
       // make it circle, can change later
       ctx.arc(this.foodPos.x * this.unitSize + this.unitSize / 2, this.foodPos.y * this.unitSize + this.unitSize / 2, foodRadius, 0, Math.PI * 2);
       // ctx.fillStyle = "#3D9728";
-      ctx.fillStyle = "#f1f1f1";
+      // ctx.fillStyle = "#f1f1f1";
+      ctx.fillStyle = "#9FE6AC";
       ctx.fill();
 
       // ctx.strokeStyle = "#FFF";
@@ -196,6 +197,7 @@ function game() {
   // setTimeout(time, 0);
   // console.log(`After: ${count}`);
   // every 10 count as 1s
+  // 910 ~ 1 min
   if (count % 15 === 0) {
     countDown(count / 15, Math.floor(910 / 15));
   }
@@ -549,7 +551,8 @@ var Snake = function () {
       ctx.rect(x * this.unitSize, y * this.unitSize, this.unitSize, this.unitSize);
       // ctx.fillStyle = "#F5FA30";
       // ctx.fillStyle = "#000";
-      ctx.fillStyle = "#585858";
+      // ctx.fillStyle = "#585858";
+      ctx.fillStyle = "#315BCB";
 
       ctx.fill();
       // border
@@ -812,7 +815,8 @@ var Snake = function () {
       ctx.rect(x * this.unitSize, y * this.unitSize, this.unitSize, this.unitSize);
       // ctx.fillStyle = "#F5FA30";
       // ctx.fillStyle = "#000";
-      ctx.fillStyle = "#585858";
+      // ctx.fillStyle = "#585858";
+      ctx.fillStyle = "#C33D2C";
       ctx.fill();
       // border
       // ctx.strokeStyle = "red";
