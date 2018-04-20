@@ -77,8 +77,10 @@ class AIGame {
       //
       // document.location.reload();
       if(this.score > 0) {
-        this.score--;
+        // this.score--;
+        this.score -= 2;
       }
+      this.snake.snakeArr.pop();
       this.snake.snakeArr.pop();
     }
 

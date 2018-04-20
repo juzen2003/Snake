@@ -97,7 +97,8 @@ var Food = function () {
       ctx.fillStyle = "#f1f1f1";
       ctx.fill();
 
-      ctx.strokeStyle = "#FFF";
+      // ctx.strokeStyle = "#FFF";
+      ctx.strokeStyle = "#808080";
       ctx.lineWidth = 3;
       ctx.stroke();
 
@@ -196,12 +197,12 @@ function game() {
   // console.log(`After: ${count}`);
   // every 10 count as 1s
   if (count % 15 === 0) {
-    countDown(count / 15, Math.floor(920 / 15));
+    countDown(count / 15, Math.floor(910 / 15));
   }
   time();
   // 460 for 30s
   // 45
-  if (count === 920) {
+  if (count === 910) {
     // document.location.reload();
     // this would stop the game, isntead of reload
     clearInterval(gameRun);
@@ -733,8 +734,10 @@ var AIGame = function () {
         //
         // document.location.reload();
         if (this.score > 0) {
-          this.score--;
+          // this.score--;
+          this.score -= 2;
         }
+        this.snake.snakeArr.pop();
         this.snake.snakeArr.pop();
       }
 

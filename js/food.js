@@ -13,7 +13,8 @@ class Food {
     ctx.fillStyle = "#f1f1f1";
     ctx.fill();
 
-    ctx.strokeStyle = "#FFF";
+    // ctx.strokeStyle = "#FFF";
+    ctx.strokeStyle = "#808080";
     ctx.lineWidth=3;
     ctx.stroke();
 

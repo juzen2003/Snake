@@ -77,11 +77,11 @@ body {
 }
 
 #human-game-canvas {
-  border: 1px solid black;
+  border: 5px solid #808080;
 }
 
 #ai-game-canvas {
-  border: 1px solid black;
+  border: 5px solid #808080;
 }
 
 .result-area {
