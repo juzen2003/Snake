@@ -4,109 +4,56 @@
 
 [Snake vs Snake](https://juzen2003.github.io/), a spin of the classic [Snake](https://www.google.com/search?q=classic+snake+game&oq=classic+snake+game&aqs=chrome..69i57j69i60j0l4.3008j0j7&sourceid=chrome&ie=UTF-8), is a one minute food competition game between human player and customized AI snake.
 
+### Rules
++ Within 1 minute, user controls a snake to compete for food with the ai snake, and whoever gets the higher points will win.
++ Whenever the snake gets the good, it would increase the points and its length by 1 pixel.
++ Whenever the snake hits the wall or it's own body, it would shrink and lose 1 points
++ To compensate the fairness of the game, AI snake would get 2 points deducted whenever it hits walls or its own body.
+
 ### Technologies
 
 Snake vs Snake is built with JavaScript for DOM manipulation and user interaction.
 
-
 ## Feature
-### User Authentication
-User can sign up or login securely.
+### AI Snake
+On the right screen, customized AI snake is running for food to compete with Human player. It's an own-made AI which is not always going for shortest path, and could make some mistakes to make the game fair but challenged.
 
-![User Auth](https://github.com/juzen2003/EasyNote/blob/master/easyNote_readme_image/home.png)
+![AI Snake on the Right Screen](https://github.com/juzen2003/Snake-vs-Snake/blob/master/images/gameRunning.png)
 
-### Notes CRUD, with rich-text editor
-User is able to create notes with rich-text editor.
+### Easy-to-Use UI
+By clicking play button, user can start the game.
 
-![Notes ](https://github.com/juzen2003/EasyNote/blob/master/easyNote_readme_image/notes.png)
+![Init Page ](https://github.com/juzen2003/Snake-vs-Snake/blob/master/images/gamePage.png)
 
-### Notebooks
-Notes can be organized by Notebooks.
+When time is up after 1 minutes, an summary screen would pop out.
 
-![Notebooks ](https://github.com/juzen2003/EasyNote/blob/master/easyNote_readme_image/notebooks.png)
-
-Notes belonging to individual notebook is displayed.
-
-![Notebook Notes ](https://github.com/juzen2003/EasyNote/blob/master/easyNote_readme_image/notebooks_notes.png)
-
-### Tags
-Notes can be tagged with multiple tags
-
-![Tags ](https://github.com/juzen2003/EasyNote/blob/master/easyNote_readme_image/tags.png)
-
-Notes belongs to individual tag is displayed.
-
-![Tag Notes ](https://github.com/juzen2003/EasyNote/blob/master/easyNote_readme_image/tags_notes.png)
-
-### MISC
-+ Modal, when icons are clicked, open up notebooks and tags index table with modals.
-```js
-openModal() {
-  if (this.props.modal === "/notebooks" || this.props.modal === "/tags") {
-    const modals = document.getElementsByClassName(`${this.props.modal.slice(1)}-modal-area`);
-    for(let i = 0; i < modals.length; i++) {
-      if(modals[i].classList.contains("is-open") === false) {
-        modals[i].classList.add("is-open");
-      }
-    }
-  }
-}
-```
-+ Configure and render the rich-text editor (React-Quill)
-```js
-const toolbar = [
-  [{ font: [] }],
-  [{ size: ["small", false, "large", "huge"] }],
-  [{ color: [] }, { background: [] }],
-  ["bold", "italic", "underline", "strike"],
-  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-  [{ align: [] }],
-  [{ 'indent': '-1'}, { 'indent': '+1' }],
-  ["blockquote", "code-block"],
-  ["link", "image"],
-  ['clean']
-];
-```
-```js
-<ReactQuill
-  value={this.state.body_with_style || ""}
-  modules={{toolbar}}
-  placeholder="Start Typing here..."
-  onChange={this.handleBodyChange}
-/>
-```
+![Summary Page ](https://github.com/juzen2003/Snake-vs-Snake/blob/master/images/gameRunning.png)
 
 ## Application Structure
-1. NavSide Bar
- + Create-note button
- + Navigate through notes, notebooks, and tags
- + logout button
-2. Rich-text editor
- + Create and edit notes, implemented with [React-Quill](https://github.com/zenoamaro/react-quill)
-3. Notes
- + Display all notes
-4. Notebooks
- + Display all notebooks
- + Display notes in each notebook
-5. Tags
- + Display all tags
- + Display notes with each tag
+1. Canvas Game Screens
+ + 2 Snakes and Games
+2. Middle info section
+ + Title
+ + Brief control menu
+ + Count down timer
+ + Play button
+3. Summary Page
+ + Display results and final score
+ + Reset button
+
 
 ## Challenges
-* Handle many to many association for notes and tags, and properly display results on frontend.
-* Reuse the same main page for notes/notebooks/tag, and properly show and hide modals.
-* To properly use React-Quill, it required reading through API since some methods are defined slightly different.
+* AI snake is not perfect, some of corner cases would make it go into corner and loses all points, temporarily implementing the bounce back feature to make the AI bounce back whenever it hits that corner case.
+* Body collision logic for AI snake is not perfect as long as it grows super long.
+* Key input detection, sometimes when user inputs two directions sequentially in a very short second when the snake is reaching the wall, it could cause the snake to move out of the board.
 
 ## Future Features and Improvement
-### Search
-* Allow user to search notes by title
-* Allow user to search by tags and notebooks
+### Snake
+* For experimental purpose, AI snake moving logic can be improved with algorithm (BFS, DFS, etc), but it would cause the game impossible to beat.
+* Improve the collision logic when AI snake grows super long.
 
-### Separate Delete page
-* Add separate deleting page to for user to confirm the deletion on each note
+### Instruction page
+* Add a separate instruction menu or page to provide more details of the game.
 
 ### MISC
-* Allow user to remove a specific tag for an individual note
-  * deleting tagging only without affecting notes and tags
-* Sort notes
-  * sort notes with created/updated time
+* Allow user to switch difficulty or change level.
