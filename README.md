@@ -29,6 +29,9 @@ When time is up after 1 minutes, an summary screen would pop out.
 
 ![Summary Page ](https://github.com/juzen2003/Snake-vs-Snake/blob/master/images/gameRunning.png)
 
+Challenge AI and go for the WIN!!!
+![Summary win Page ](https://github.com/juzen2003/Snake-vs-Snake/blob/master/images/winPage.png)
+
 ## Application Structure
 1. Canvas Game Screens
  + 2 Snakes and Games
