@@ -132,13 +132,13 @@ var Food = function () {
   }, {
     key: "drawRandomFood",
     value: function drawRandomFood(canvasWidth, canvasHeight, snake) {
-      var randomX = Math.floor(Math.random() * (canvasWidth / this.unitSize));
-      var randomY = Math.floor(Math.random() * (canvasHeight / this.unitSize));
+      var randomX = Math.floor(Math.random() * (canvasWidth / this.unitSize - 1));
+      var randomY = Math.floor(Math.random() * (canvasHeight / this.unitSize - 1));
       // debugger
       //make sure food is not generated at snake's position
       while (!this.validFood(snake, randomX, randomY)) {
-        randomX = Math.floor(Math.random() * (canvasWidth / this.unitSize));
-        randomY = Math.floor(Math.random() * (canvasHeight / this.unitSize));
+        randomX = Math.floor(Math.random() * (canvasWidth / this.unitSize - 1));
+        randomY = Math.floor(Math.random() * (canvasHeight / this.unitSize - 1));
       }
       // for(let i = 0; i < snake.length; i++) {
       //   if (snake[i].x === randomX || snake[i].y === randomY || snake[i].x === randomX && snake[i].y === randomY) {
@@ -403,19 +403,19 @@ var PlayerGame = function () {
       // debugger
       if (this.rightPressed) {
         // debugger
-        if (this.direction !== "left" && this.direction !== "right") {
+        if (this.direction !== "left" && this.direction !== "right" && this.snake.headX < this.gameViewWidth / this.snake.unitSize - 1) {
           this.direction = "right";
         }
       } else if (this.leftPressed) {
-        if (this.direction !== "right" && this.direction !== "left") {
+        if (this.direction !== "right" && this.direction !== "left" && this.snake.headX > 0) {
           this.direction = "left";
         }
       } else if (this.upPressed) {
-        if (this.direction !== "down" && this.direction !== "up" && this.snake.headY !== 0) {
+        if (this.direction !== "down" && this.direction !== "up" && this.snake.headY > 0) {
           this.direction = "up";
         }
       } else if (this.downPressed) {
-        if (this.direction !== "up" && this.direction !== "down") {
+        if (this.direction !== "up" && this.direction !== "down" && this.snake.headY < this.gameViewHeight / this.snake.unitSize - 1) {
           this.direction = "down";
         }
       } else {

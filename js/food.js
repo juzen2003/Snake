@@ -45,13 +45,13 @@ class Food {
   }
 
   drawRandomFood(canvasWidth, canvasHeight, snake) {
-    let randomX = Math.floor( Math.random() * (canvasWidth / this.unitSize));
-    let randomY = Math.floor( Math.random() * (canvasHeight / this.unitSize));
+    let randomX = Math.floor( Math.random() * (canvasWidth / this.unitSize - 1));
+    let randomY = Math.floor( Math.random() * (canvasHeight / this.unitSize - 1));
     // debugger
     //make sure food is not generated at snake's position
     while(!this.validFood(snake, randomX, randomY)) {
-      randomX = Math.floor( Math.random() * (canvasWidth / this.unitSize));
-      randomY = Math.floor( Math.random() * (canvasHeight / this.unitSize));
+      randomX = Math.floor( Math.random() * (canvasWidth / this.unitSize -1));
+      randomY = Math.floor( Math.random() * (canvasHeight / this.unitSize -1));
     }
     // for(let i = 0; i < snake.length; i++) {
     //   if (snake[i].x === randomX || snake[i].y === randomY || snake[i].x === randomX && snake[i].y === randomY) {

@@ -109,19 +109,19 @@ class PlayerGame {
     // debugger
     if(this.rightPressed) {
       // debugger
-      if (this.direction !== "left" && this.direction !== "right") {
+      if (this.direction !== "left" && this.direction !== "right" && (this.snake.headX < this.gameViewWidth / this.snake.unitSize - 1)) {
         this.direction = "right";
       }
     } else if (this.leftPressed) {
-      if (this.direction !== "right" && this.direction !== "left") {
+      if (this.direction !== "right" && this.direction !== "left" && this.snake.headX > 0) {
         this.direction = "left";
       }
     } else if (this.upPressed) {
-      if (this.direction !== "down" && this.direction !== "up" && this.snake.headY !== 0) {
+      if (this.direction !== "down" && this.direction !== "up" && this.snake.headY > 0) {
         this.direction = "up";
       }
     } else if (this.downPressed) {
-      if (this.direction !== "up" && this.direction !== "down") {
+      if (this.direction !== "up" && this.direction !== "down" && (this.snake.headY < this.gameViewHeight / this.snake.unitSize - 1)) {
         this.direction = "down";
       }
     } else {
