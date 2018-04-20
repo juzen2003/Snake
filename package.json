@@ -3,13 +3,8 @@
   "version": "1.0.0",
   "description": "A classic game allows user to control a moving snake and collect food. Every time the snake collects the food, it would score a point, and the length of its body would increase. It would get more difficult for a snake to move as its body grows longer. Whenever the snake hits the wall or its own body, the game is over.",
   "main": "webpack.config.js",
-
-  "engines": {
-    "node": "4.1.1",
-    "npm": "2.1.x"
-  },
   "scripts": {
-    "postinstall": "webpack",
+    "build": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch"
   },
